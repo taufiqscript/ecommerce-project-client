@@ -1,0 +1,59 @@
+import CarouselLayout from '@/components/layouts/CarouselLayout'
+import { dataProductAtom, idProductAtom, isOpenModalAtom, languageStorageAtom } from '@/jotai/atoms'
+import EachUtils from '@/utils/EachUtils'
+import { getListCategory } from '@/utils/getListCategory'
+import { useAtom } from 'jotai'
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
+const CategoryMenu = () => {
+    const loc = useLocation()
+
+    const [languageStorage] = useAtom(languageStorageAtom)
+    const [, setIsOpenModal] = useAtom(isOpenModalAtom)
+    const [, setIdProduct] = useAtom(idProductAtom)
+    const [, setData] = useAtom(dataProductAtom)
+
+    const [product, setProduct] = useState([])
+
+
+    useEffect(() => {
+        getListCategory({ products: "products" }).then(result => setProduct(result))
+    }, [])
+
+    return (
+        <div className='relative mx-12 my-4 bg-white h-[390px]'>
+            <h3 className='p-5 text-2xl font-semibold text-gray-500'>{languageStorage === "en" ? "Product" : "Produk"}</h3>
+            <CarouselLayout>
+                <EachUtils
+                    of={product}
+                    render={(item, index) => (
+                        <div key={index} className='w-40'>
+                            <div
+                                className='relative h-[160px] border border-gray-300 w-full object-cover cursor-pointer  hover:shadow-xl transition-all'
+                                onClick={() => loc.pathname === '/browse' ? (
+                                    setIdProduct(item.id),
+                                    setData(item),
+                                    setIsOpenModal(true)
+                                )
+                                    :
+                                    location.replace('/login')}
+                            >
+                                <img
+                                    src={item.image}
+                                    className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 z-10'
+                                />
+                                <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-200 rounded-full p-8 h-[7vh]' />
+                                <p
+                                    className='absolute bottom-3 left-1/2 -translate-x-1/2 text-sm text-center w-28'
+                                >{item.category}</p>
+                            </div>
+                        </div>
+                    )}
+                />
+            </CarouselLayout>
+        </div>
+    )
+}
+
+export default CategoryMenu
