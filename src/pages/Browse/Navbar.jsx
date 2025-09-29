@@ -9,8 +9,11 @@ import React from 'react'
 import { FaLinkedin } from 'react-icons/fa'
 import { HiOutlineShoppingCart } from 'react-icons/hi2'
 import { SiShopify } from 'react-icons/si'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+    const navigate = useNavigate()
+
     const [languageStorage] = useAtom(languageStorageAtom)
 
     const linkedIn = "https://www.linkedin.com/in/taufiq-rahman-98a322356"
@@ -69,7 +72,7 @@ const Navbar = () => {
                             <HiOutlineShoppingCart
                                 size={28}
                                 className='text-white cursor-pointer hover:text-gray-200'
-                                onClick={() => location.replace('/cart')}
+                                onClick={() => navigate('/cart')}
                             />
                         </div>
                     </div>
