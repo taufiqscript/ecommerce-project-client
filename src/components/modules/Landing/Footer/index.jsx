@@ -11,60 +11,60 @@ const Footer = ({ style }) => {
     const [languageStorage] = useAtom(languageStorageAtom)
 
     return (
-        <footer className={`py-10 px-12 ${style}`}>
-            <div className='flex items-start gap-[11em] text-sm'>
-                <div className='flex flex-col gap-4'>
+        <footer className={`py-5 px-6 sm:py-10 sm:px-12 ${style}`}>
+            <div className='flex items-start gap-2 sm:gap-[11em] text-sm'>
+                <div className='flex flex-col gap-0.5 sm:gap-4'>
                     <EachUtils
                         of={languageStorage === "en" ? LIST_FOOTER_1_EN : LIST_FOOTER_1_ID}
                         render={(item, index) => (
                             <div key={index}>
-                                <h3 className='font-bold'>{item.name}</h3>
+                                <h3 className='text-[10px] sm:text-[14px] font-bold'>{item.name}</h3>
                                 <a
                                     href={item.url}
-                                    className='hover:text-indigo-500 hover:underline'
+                                    className='hover:text-indigo-500 text-[8px] sm:text-[14px] hover:underline'
                                 >{item.title}</a>
                             </div>
                         )}
                     />
                 </div>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-0.5 sm:gap-4'>
                     <EachUtils
                         of={languageStorage === "en" ? LIST_FOOTER_2_EN : LIST_FOOTER_2_ID}
                         render={(item, index) => (
                             <div key={index}>
-                                <h3 className='font-bold'>{item.name}</h3>
+                                <h3 className='text-[10px] sm:text-[14px] font-bold'>{item.name}</h3>
                                 <a
                                     href={item.url}
-                                    className='hover:text-indigo-500 hover:underline'
+                                    className='hover:text-indigo-500 text-[8px] sm:text-[14px] hover:underline'
                                 >{item.title}</a>
                             </div>
                         )}
                     />
                 </div>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-0.5 sm:gap-4'>
                     <EachUtils
                         of={languageStorage === "en" ? LIST_FOOTER_3_EN : LIST_FOOTER_3_ID}
                         render={(item, index) => (
                             <div key={index}>
-                                <h3 className='font-bold'>{item.name}</h3>
+                                <h3 className='text-[10px] sm:text-[14px] font-bold'>{item.name}</h3>
                                 <a
                                     href={item.url}
-                                    className='hover:text-indigo-500 hover:underline'
+                                    className='hover:text-indigo-500 text-[8px] sm:text-[14px] hover:underline'
                                 >{item.title}</a>
                             </div>
                         )}
                     />
                 </div>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-0.5 sm:gap-4'>
                     <EachUtils
                         of={languageStorage === "en" ? LIST_FOOTER_4_EN : LIST_FOOTER_4_ID}
                         render={(item, index) => (
                             <div key={index} >
-                                <h3 className='font-bold'>{item.name}</h3>
+                                <h3 className='pt-2.5 sm:pt-0 text-[10px] sm:text-[14px] font-bold'>{item.name}</h3>
                                 <div>
                                     <a
                                         href={item.url}
-                                        className='flex items-center gap-1'
+                                        className='flex items-center hover:text-indigo-500 text-[8px] sm:text-[14px] hover:underline gap-1'
                                     >
                                         <span>
                                             {
@@ -74,7 +74,7 @@ const Footer = ({ style }) => {
                                                 index === 4 && <FaLinkedin />
                                             }
                                         </span>
-                                        <div className='hover:text-indigo-500 hover:underline'>
+                                        <div className='hover:text-indigo-500 hover:underline text-[10px] sm:text-[14px]'>
                                             {item.title}
                                         </div>
                                     </a>
@@ -83,22 +83,21 @@ const Footer = ({ style }) => {
                         )}
                     />
                 </div>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-2.5 sm:gap-4'>
                     <h3
-                        className='font-bold'
+                        className='text-[10px] sm:text-[14px] font-bold'
                     >{languageStorage === "en" ? "Download App" : "Download Aplikasi"}</h3>
-                    <div className='flex items-center gap-1 bg-white p-2 rounded-md font-bold cursor-pointer hover:bg-gray-200 transition-all shadow-md'>
-                        <IoLogoApple size={20} />
+                    <div className='flex text-[8px] sm:text-sm w-[70px] sm:w-full items-center gap-1 bg-white p-1 sm:p-2 rounded-md font-bold cursor-pointer hover:bg-gray-200 transition-all shadow-md'>
+                        <IoLogoApple className='text-xs sm:text-2xl' />
                         App Store
                     </div>
-                    <div className='flex items-center gap-1 bg-white p-2 rounded-md font-bold cursor-pointer hover:bg-gray-200 transition-all shadow-md'>
-                        <IoLogoGooglePlaystore size={20} />
+                    <div className='flex text-[8px] sm:text-sm w-[70px] sm:w-full items-center gap-1 bg-white p-1 sm:p-2 rounded-md font-bold cursor-pointer hover:bg-gray-200 transition-all shadow-md'>
+                        <IoLogoGooglePlaystore className='text-xs sm:text-2xl' />
                         Google Play
                     </div>
-                    <div className='flex items-center gap-1 bg-white p-2 rounded-md font-bold cursor-pointer hover:bg-gray-200 transition-all shadow-md'>
+                    <div className='flex text-[8px] sm:text-sm w-[70px] sm:w-full items-center gap-1 bg-white p-1 sm:p-2 rounded-md font-bold cursor-pointer hover:bg-gray-200 transition-all shadow-md'>
                         <SiAppgallery
-                            size={18}
-                            className='text-red-600'
+                            className='text-xs sm:text-2xl text-red-600'
                         />
                         AppGallery
                     </div>

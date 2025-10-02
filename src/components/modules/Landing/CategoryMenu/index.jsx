@@ -22,15 +22,15 @@ const CategoryMenu = () => {
     }, [])
 
     return (
-        <div className='relative mx-12 my-4 bg-white h-[390px]'>
-            <h3 className='p-5 text-2xl font-semibold text-gray-500'>{languageStorage === "en" ? "Product" : "Produk"}</h3>
+        <div className='relative mx-2 sm:mx-12 my-4 bg-white h-[217px] sm:h-[390px]'>
+            <h3 className='p-2 sm:p-5 text-sm sm:text-2xl font-semibold text-gray-500'>{languageStorage === "en" ? "Product" : "Produk"}</h3>
             <CarouselLayout>
                 <EachUtils
                     of={product}
                     render={(item, index) => (
-                        <div key={index} className='w-40'>
+                        <div key={index} className='w-22 sm:w-40'>
                             <div
-                                className='relative h-[160px] border border-gray-300 w-full object-cover cursor-pointer  hover:shadow-xl transition-all'
+                                className='relative h-[90px] sm:h-[160px] border border-gray-300 w-[90px] sm:w-full object-cover cursor-pointer  hover:shadow-xl transition-all'
                                 onClick={() => loc.pathname === '/browse' ? (
                                     setIdProduct(item.id),
                                     setData(item),
@@ -41,11 +41,11 @@ const CategoryMenu = () => {
                             >
                                 <img
                                     src={item.image}
-                                    className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 z-10'
+                                    className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 sm:w-12 z-10'
                                 />
-                                <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-200 rounded-full p-8 h-[7vh]' />
+                                <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-200 rounded-full p-4 sm:p-8 h-[7vh] w-[7vh]' />
                                 <p
-                                    className='absolute bottom-3 left-1/2 -translate-x-1/2 text-sm text-center w-28'
+                                    className='absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] sm:text-sm text-center w-28'
                                 >{item.category}</p>
                             </div>
                         </div>

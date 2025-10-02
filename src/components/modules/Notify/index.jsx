@@ -26,8 +26,7 @@ const Notify = ({
                 <div className={`alert text-white border-none ${styleMessage}`}>
                     {isShowIcon && (
                         <FaCircleCheck
-                            size={42}
-                            className='text-green-300 rounded-full bg-white'
+                            className='text-[24px] sm:text-[42px] text-green-300 rounded-full bg-white'
                         />
                     )}
                     <span>{message}</span>

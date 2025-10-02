@@ -9,8 +9,8 @@ import { useReactToPrint } from 'react-to-print'
 const PrintStruk = ({ total, address, order }) => {
     const navigate = useNavigate()
 
-    const [methodPayment, setMethodPayment] = useAtom(methodPaymentStorageAtom)
-    const [bankStorage, setBankStorage] = useAtom(choosedBankStorageAtom)
+    const [methodPayment] = useAtom(methodPaymentStorageAtom)
+    const [bankStorage] = useAtom(choosedBankStorageAtom)
 
     const [printStrukModal, setPrintStrukModal] = useAtom(printStrukModalAtom)
 
@@ -60,56 +60,59 @@ const PrintStruk = ({ total, address, order }) => {
 
     return (
         <dialog className={`modal ${printStrukModal && 'modal-open'}`}>
-            <div className='bg-white overflow-y-scroll scroll-smooth w-full max-w-md max-h-lg h-full'>
+            <div className='bg-white overflow-y-scroll scroll-smooth w-full max-w-xs sm:max-w-md h-auto sm:h-screen py-4 sm:py-0 rounded'>
 
                 <div
                     ref={componentRef}
-                    className='bg-white rounded py-6 px-8 '
+                    className='bg-white rounded py-1.5 sm:py-6 px-4 sm:px-8 '
                 >
                     <div
-                        className='flex flex-col gap-1 py-2 cursor-pointer border-b-gray-300 border-b-1'
+                        className='flex flex-col gap-0.5 sm:gap-1 py-1 sm:py-2 cursor-pointer border-b-gray-300 border-b-1'
                         onClick={() => navigate('/')}
                     >
                         <div className='relative m-auto'>
                             <SiShopify
-                                size={60}
-                                className='text-black'
+                                className='text-[38px] sm:text-[60px] text-black'
                             />
                             <p
-                                className='absolute top-4 left-3 font-black text-white bg-black rotate-6 text-4xl'
+                                className='absolute top-2 sm:top-4 left-2 sm:left-3 font-black text-white bg-black rotate-8 w-4 sm:rotate-6 text-[18px] sm:text-4xl rounded-full'
                             >E</p>
                         </div>
                         <div className='flex flex-col gap-0.5 text-center'>
-                            <h3 className='text-black text-3xl font-semibold font-serif'>EcoMart</h3>
-                            <p>Jl. Jatiwaringin Raya Gang Swadaya 1 Pondok Gede - Bekasi</p>
-                            <p>No. Telp 081328233697</p>
+                            <h3 className='text-black text-lg sm:text-3xl font-semibold font-serif'>EcoMart</h3>
+                            <p
+                                className='text-[10px] sm:text-[16px]'
+                            >Jl. Jatiwaringin Raya Gang Swadaya 1 Pondok Gede - Bekasi</p>
+                            <p
+                                className='text-[10px] sm:text-[16px]'
+                            >No. Telp 081328233697</p>
                         </div>
                     </div>
-                    <div className='py-4 border-dashed border-b-2 border-b-gray-400'>
-                        <p className='font-bold'>No. Pesanan: {generateOrderNumber()}</p>
-                        <div className='grid grid-cols-2 gap-4 items-center pt-5'>
-                            <p className='flex flex-col'>
+                    <div className='py-2 sm:py-4 border-dashed border-b-2 border-b-gray-400'>
+                        <p className='text-[12px] sm:text-[16px] font-bold'>No. Pesanan: {generateOrderNumber()}</p>
+                        <div className='grid grid-cols-2 gap-2 sm:gap-4 items-center pt-2.5 sm:pt-5'>
+                            <p className='flex flex-col text-[12px] sm:text-[16px]'>
                                 Total Pembayaran
                                 <span className='font-bold'>{formatCurrency(total)}</span>
                             </p>
-                            <p className='flex flex-col'>
+                            <p className='flex flex-col text-[12px] sm:text-[16px]'>
                                 Waktu Pembayaran
                                 <span className='font-bold'>{nowDate()}</span>
                             </p>
                         </div>
                     </div>
-                    <div className='py-4 border-dashed border-b-2 border-b-gray-400'>
-                        <div className='grid grid-cols-2 gap-4 items-top'>
-                            <p className='flex flex-col'>
+                    <div className='py-2 sm:py-4 border-dashed border-b-2 border-b-gray-400'>
+                        <div className='grid grid-cols-2 gap-2 sm:gap-4 items-top'>
+                            <p className='flex flex-col text-[12px] sm:text-[16px]'>
                                 Rincian Pengiriman:
-                                <span className='text-sm pt-3'>
+                                <span className='text-[10px] sm:text-sm pt-1.5 sm:pt-3'>
                                     <div>{address?.fullName}</div>
                                     {address?.street} ({address?.detail}), {address?.city} {address?.district}, {address?.province}, {address?.postalCode}
                                 </span>
                             </p>
-                            <p className='flex flex-col'>
+                            <p className='flex flex-col text-[12px] sm:text-[16px]'>
                                 Metode Pembayaran:
-                                <span className='pt-3 text-sm'>
+                                <span className='pt-1.5 sm:pt-3 text-[10px] sm:text-sm'>
                                     {
                                         methodPayment === "bank" ? bankStorage + " - Transfer Bank" :
                                             methodPayment === "cod" ? "COD - Cash on Delivery" : null
@@ -118,21 +121,24 @@ const PrintStruk = ({ total, address, order }) => {
                             </p>
                         </div>
                     </div>
-                    <div className='py-4 border-dashed border-b-2 border-b-gray-400'>
+                    <div className='py-2 sm:py-4 border-dashed border-b-2 border-b-gray-400'>
                         <div>
-                            <div className='flex flex-col'>
+                            <div className='flex flex-col text-[12px] sm:text-[16px]'>
                                 Rincian Pesanan:
                                 <EachUtils
                                     of={order}
                                     render={(item, index) => (
                                         <div
                                             key={index}
-                                            className='pt-3 flex justify-between items-center text-sm'
+                                            className='pt-1.5 sm:pt-3 flex justify-between items-center text-sm'
                                         >
-                                            <p className='max-w-xs'>{item?.title}</p>
+                                            <p className='max-w-xs text-[10px] sm:text-[16px]'>{item?.title}</p>
                                             <div className='text-right'>
-                                                <p>x {item?.quantity}</p>
-                                                <p>{formatCurrency(item?.price * item?.quantity)}</p>
+                                                <p
+                                                    className='text-[10px] sm:text-[16px]'>x {item?.quantity}</p>
+                                                <p
+                                                    className='text-[10px] sm:text-[16px]'
+                                                >{formatCurrency(item?.price * item?.quantity)}</p>
                                             </div>
                                         </div>
                                     )}
@@ -140,23 +146,25 @@ const PrintStruk = ({ total, address, order }) => {
                             </div>
                         </div>
                     </div>
-                    <div className='py-4 border-dashed border-b-2 border-b-gray-400'>
-                        <div className='flex justify-between items-center text-lg'>
+                    <div className='py-2 sm:py-4 border-dashed border-b-2 border-b-gray-400'>
+                        <div className='flex justify-between items-center text-[12px] sm:text-lg'>
                             Total Pembayaran
-                            <p>{formatCurrency(total)}</p>
+                            <p
+                                className='text-[14px] sm:text-[18px]'
+                            >{formatCurrency(total)}</p>
                         </div>
                     </div>
                 </div>
 
-                <div className='flex gap-6 justify-end items-center px-8 pb-2'>
+                <div className='flex gap-3 sm:gap-6 justify-end items-center px-4 sm:px-8 pb-1 sm:pb-2'>
                     <button
                         onClick={() => setPrintStrukModal(false)}
-                        className='btn btn-ghost w-28'>
+                        className='btn btn-ghost w-14 sm:w-28 h-7 sm:h-10'>
                         Tutup
                     </button>
                     <button
                         onClick={handlePrintStruk}
-                        className='btn btn-primary text-white w-28'>
+                        className='btn btn-primary text-white w-14 sm:w-28 h-7 sm:h-10'>
                         Cetak
                     </button>
                 </div>

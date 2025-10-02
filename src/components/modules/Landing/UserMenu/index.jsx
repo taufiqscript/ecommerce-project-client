@@ -10,7 +10,7 @@ const UserMenu = () => {
 
   return (
     <div>
-      <ul className='flex items-center gap-2'>
+      <ul className='flex justify-end items-center text-[7px] sm:text-[14px] gap-1 sm:gap-2'>
         <li
           className='hover:text-gray-200 cursor-pointer'
           onClick={() => navigate('/register')}

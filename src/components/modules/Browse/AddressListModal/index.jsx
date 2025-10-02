@@ -52,16 +52,16 @@ const AddressListModal = () => {
             {notifMessage && <Notify
                 message={notifMessage}
                 style={"toast-middle"}
-                styleMessage={"bg-black/50 flex flex-col text-2xl p-6"}
+                styleMessage={"bg-black/50 flex flex-col text-[14px] sm:text-2xl p-2 sm:p-6"}
                 onClose={() =>
                     setNotifMessage(null)}
                 isShowIcon={chosedAddressStorage === mainAddr?._id || mainAddr ? false : true}
             />}
-            <div className='bg-white rounded-sm max-w-lg w-full h-auto overflow-y-scroll'>
-                <h2 className='text-xl p-4 font-semibold'>
+            <div className='bg-white rounded-sm max-w-xs sm:max-w-lg w-full h-auto overflow-y-scroll'>
+                <h2 className='text-[14px] sm:text-xl p-2 sm:p-4 font-semibold'>
                     {languageStorage === 'en' ? 'My Address' : 'Alamat Saya'}
                 </h2>
-                <div className='flex flex-col gap-4 p-4 border-y-gray-300 border-y-1 h-[450px]'>
+                <div className='flex flex-col gap-2 sm:gap-4 p-2 sm:p-4 border-y-gray-300 border-y-1 h-[300px] sm:h-[450px]'>
                     <EachUtils
                         of={address}
                         render={(item, index) => (
@@ -69,8 +69,8 @@ const AddressListModal = () => {
                                 key={index}
                                 className={`flex justify-between items-center ${index - 1 ? "border-b-gray-300 border-b-1" : "border-none"}`}
                             >
-                                <div className='flex flex-col pb-3'>
-                                    <div className='flex gap-2 items-center'>
+                                <div className='flex flex-col pb-1.5 sm:pb-3'>
+                                    <div className='flex gap-1 sm:gap-2 items-center'>
 
                                         <input
                                             checked={selectAddress ? selectAddress === item._id
@@ -80,19 +80,19 @@ const AddressListModal = () => {
                                             name='address'
                                             onChange={() => handleSelectAddress(item._id)}
                                             type='radio'
-                                            className='radio radio-sm rounded-full checked:text-black checked:bg-white mr-2'
+                                            className='radio radio-sm rounded-full checked:text-black checked:bg-white mr-1 sm:mr-2 w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]'
                                             defaultChecked
                                         />
-                                        <h3 className='text-lg font-bold'>{item.fullName}</h3>
-                                        <div>|</div>
-                                        <p>{item.phone}</p>
+                                        <h3 className='text-[14px] sm:text-lg font-bold'>{item.fullName}</h3>
+                                        <div className='text-[14px] sm:text-[16px]'>|</div>
+                                        <p className='text-[14px] sm:text-[16px]'>{item.phone}</p>
                                     </div>
                                     <p
-                                        className='pl-9 max-w-sm'
+                                        className='text-[12px] sm:text-[16px] pl-5 sm:pl-9 max-w-[220px] sm:max-w-sm'
                                     >{item.street} ({item.detail}) {item.district}, {item.city}, {item.province}, {item.postalCode}
                                     </p>
                                     {item.isPrimary && (
-                                        <p className='text-[11px] text-center w-12.5 font-bold border border-blue-500 text-blue-500 py-0.5 px-1 ml-9'>
+                                        <p className='text-[5.5px] sm:text-[11px] text-center w-6.5 sm:w-12.5 font-bold border border-blue-500 text-blue-500 py-0.5 px-0.5 sm:px-1 ml-5 sm:ml-9'>
                                             {languageStorage === 'en' ? 'Default' : 'Utama'}
                                         </p>
                                     )}
@@ -119,23 +119,20 @@ const AddressListModal = () => {
                                             ))
                                             setIsClicked(true)
                                         }}
-                                        className='text-sm text-blue-400 cursor-pointer'>
+                                        className='text-[11px] sm:text-sm text-blue-400 cursor-pointer'>
                                         {languageStorage === 'en' ? 'Change' : 'Ubah'}
                                     </p>
                                 </div>
                             </div>
                         )}
                     />
-                    <div className='flex gap-4'>
+                    <div className='flex gap-2 sm:gap-4'>
                         <button
                             onClick={() => setIsOpenModal(true)}
-                            className='flex items-center justify-center gap-1 border border-gray-300 p-2 w-50 hover:bg-gray-100 cursor-pointer'>
-                            <GoPlus size={28} />
+                            className='flex items-center justify-center gap-0.5 sm:gap-1 border border-gray-300 p-1 sm:p-2 w-32 sm:w-50 hover:bg-gray-100 cursor-pointer text-[11px] sm:text-[16px]'>
+                            <GoPlus className='text-[14px] sm:text-[28px]' />
                             {languageStorage === 'en' ? 'Add New Address' : 'Tambah Alamat Baru'}
                         </button>
-                        {console.log(selectAddress === mainAddr?._id)}
-                        {console.log(chosedAddressStorage)}
-                        {console.log(selectAddress)}
                         {address?.length > 1 && (
                             <button
                                 onClick={() => {
@@ -149,18 +146,18 @@ const AddressListModal = () => {
                                             setNotifMessage
                                         })
                                 }}
-                                className='flex items-center justify-center gap-2 border border-gray-300 p-2 w-43 hover:bg-red-500 hover:text-white hover:border-none cursor-pointer'
+                                className='flex items-center justify-center gap-1 sm:gap-2 border border-gray-300 p-1 sm:p-2 w-24 sm:w-43 hover:bg-red-500 hover:text-white hover:border-none cursor-pointer text-[11px] sm:text-[16px]'
                             >
-                                <GoTrash size={22} />
+                                <GoTrash className='text-[11px] sm:text-[22px]' />
                                 {languageStorage === 'en' ? 'Remove Address' : 'Hapus Alamat'}
                             </button>
                         )}
 
                     </div>
                 </div>
-                <div className='flex justify-between items-center p-4'>
+                <div className='flex justify-between items-center p-2 sm:p-4'>
                     <div />
-                    <div className='flex gap-4'>
+                    <div className='flex gap-2 sm:gap-4'>
 
                         <button
                             onClick={() => {
@@ -168,7 +165,7 @@ const AddressListModal = () => {
                                 setSelectAddress(chosedAddressStorage)
                                 location.reload()
                             }}
-                            className='border border-gray-100 w-35 py-2 shadow-sm hover:bg-gray-100 cursor-pointer'>
+                            className='border border-gray-100 w-18 text-[11px] sm:text-[16px] sm:w-35 py-1 sm:py-2 shadow-sm hover:bg-gray-100 cursor-pointer'>
                             {languageStorage === 'en' ? 'Cancel' : 'Batalkan'}
                         </button>
                         <button
@@ -176,7 +173,7 @@ const AddressListModal = () => {
                                 setChosedAddressStorage(selectAddress)
                                 location.reload()
                             }}
-                            className='bg-indigo-500 text-white w-35 py-2 shadow-md hover:bg-indigo-600 cursor-pointer'>
+                            className='bg-indigo-500 text-white w-18 text-[11px] sm:text-[16px] sm:w-35 py-1 sm:py-2 shadow-md hover:bg-indigo-600 cursor-pointer'>
                             {languageStorage === 'en' ? 'Confirm' : 'Konfirmasi'}
                         </button>
                     </div>

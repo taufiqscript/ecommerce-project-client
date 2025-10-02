@@ -62,68 +62,67 @@ const Login = () => {
         }
     }
 
+    const screenWidth = window.innerWidth
+
     return (
         <DefaultLayout>
             <div className='relative'>
                 {notifMessage && <Notify message={notifMessage} style={"toast-top"} styleMessage={"bg-black/60 flex flex-col text-2xl"} onClose={() => setNotifMessage(null)} />}
                 <header className='relative w-full'>
-                    <nav className='flex justify-between items-center max-w-6xl mx-auto py-6'>
+                    <nav className='flex justify-between items-center max-w-xs sm:max-w-6xl mx-auto py-3 sm:py-6'>
                         <div className='relative flex items-center gap-1'>
-                            <div
-                                className='flex items-center gap-1 cursor-pointer'
+                            <div 
                                 onClick={() => navigate('/')}
-                            >
+                                className='relative flex items-center gap-1'>
                                 <div className='relative'>
                                     <SiShopify
-                                        size={60}
-                                        className='text-indigo-500'
+                                        className='text-indigo-500 w-[35px] h-[35px] sm:w-[60px] sm:h-[60px]'
                                     />
                                     <p
-                                        className='absolute top-4 left-3 font-black text-white bg-indigo-500 rotate-6 text-4xl'
+                                        className='absolute top-2 sm:top-4 left-2 h-6 w-3 sm:h-10 sm:w-6 sm:left-3 font-black text-white bg-indigo-500 rotate-8 sm:rotate-6 text-lg sm:text-4xl'
                                     >E</p>
                                 </div>
-                                <h2 className='text-indigo-500 text-3xl font-semibold font-serif'>EcoMart</h2>
+                                <h2 className='text-blue-500 text-xs sm:text-3xl font-semibold font-serif'>EcoMart</h2>
                             </div>
-                            <div className='pl-2 font-semibold text-2xl'>Log In</div>
+                            <div className='pl-1 sm:pl-2 font-semibold text-md sm:text-2xl'>Sign In</div>
                         </div>
-                        <p className='text-blue-500 text-sm cursor-pointer'>Need Help?</p>
+                        <p className='text-blue-500 text-[10px] sm:text-sm cursor-pointer'>Need Help?</p>
                     </nav>
                 </header>
-                <div className='relative bg-indigo-500 h-[650px] shadow-md'>
-                    <div className='absolute top-1/2 -translate-1/2 left-1/2 -translate-x-1/2 flex gap-32 items-center  max-w-7xl w-full justify-center'>
+                <div className='relative bg-indigo-500 h-[325px] sm:h-[650px] shadow-md'>
+                    <div className='absolute top-1/2 -translate-1/2 left-1/2 -translate-x-1/2 flex gap-12 sm:gap-32 items-center max-w-sm sm:max-w-7xl w-full justify-center'>
                         <div className='relative flex flex-col items-center gap-1'>
                             <div className='relative'>
                                 <SiShopify
-                                    size={150}
-                                    className='text-white'
+                                    className='text-white text-[85px] sm:text-[150px]'
                                 />
                                 <p
-                                    className='absolute top-10 left-8 font-black text-indigo-500 bg-white rotate-6 text-8xl'
+                                    className='absolute top-5 sm:top-10 left-4 sm:left-8 font-black text-indigo-500 bg-white rotate-7 sm:rotate-6 text-6xl sm:text-8xl rounded-full'
                                 >E</p>
                             </div>
-                            <h2 className='text-white text-5xl font-semibold font-serif'>EcoMart</h2>
-                            <p className='text-white text-2xl mt-4 font-semibold'>Lebih Hemat Lebih Cepat</p>
+                            <h2 className='text-white text-lg sm:text-5xl font-semibold font-serif'>EcoMart</h2>
+                            <p className='text-white text-[8px] sm:text-2xl sm:mt-4 font-semibold'>Lebih Hemat Lebih Cepat</p>
                         </div>
                         <form
-                            className='bg-white p-8 rounded-md w-[26em]'
+                            className='bg-white p-4 sm:p-8 rounded-md w-[200px] h-[216px] sm:w-[26em] sm:h-[430px]'
                         >
-                            <h3 className='font-semibold text-xl'>Log In</h3>
-                            <div className='flex flex-col gap-4 mt-6 '>
+                            <h3 className='font-semibold text-xs sm:text-2xl'>Log In</h3>
+                            <div className='flex flex-col gap-2 sm:gap-4 mt-3 sm:mt-6 '>
                                 <input
                                     placeholder='Email'
                                     type='email'
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className='w-80 border border-gray-300 rounded px-2 py-3 shadow-md w-full'
+                                    className='w-full text-[10px] sm:text-lg border border-gray-300 rounded px-1 sm:px-2 py-1.5 sm:py-3 shadow-md'
                                 />
                                 <input
                                     placeholder='Password'
                                     type='password'
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className='w-80 border border-gray-300 rounded px-2 py-3 shadow-md w-full'
+                                    className='w-full text-[10px] sm:text-lg border border-gray-300 rounded px-1 sm:px-2 py-1.5 sm:py-3 shadow-md'
                                 />
                                 <button
                                     onClick={handleLogin}
-                                    className='w-full bg-indigo-500 text-white text-xl font-bold text-center py-3 rounded cursor-pointer hover:bg-indigo-600 transition-all'
+                                    className='w-full bg-indigo-500 text-white text-xs sm:text-xl font-bold text-center py-1.5 sm:py-3 rounded cursor-pointer hover:bg-indigo-600 transition-all'
                                 >
                                     Log In
                                 </button>
@@ -131,13 +130,14 @@ const Login = () => {
                                     <div className='flex-grow border-t border-gray-300' />
                                     <div className='flex-grow border-t border-gray-300' />
                                 </div>
-                                <div className='w-auto mx-auto'>
+                                <div className='mx-auto sm:w-auto w-35'>
                                     <GoogleLogin
                                         onSuccess={handleGoogleLogin}
                                         onError={() => console.log('Google login failed!')}
+                                        size={screenWidth < 640 ? 'small' : 'large'}
                                     />
                                 </div>
-                                <p className='mt-2 m-auto'>
+                                <p className='text-[8px] sm:mt-2 m-auto'>
                                     New to EcoMart?
                                     <span
                                         className='ml-1 hover:text-indigo-500 hover:underline cursor-pointer'

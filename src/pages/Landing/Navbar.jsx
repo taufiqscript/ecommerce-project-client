@@ -14,10 +14,10 @@ const Navbar = () => {
 
     return (
         <header className='relative w-full'>
-            <nav className='p-2 fixed z-50 w-full bg-indigo-500'>
-                <div className='max-w-7xl mx-auto'>
-                    <div className='flex justify-between items-center'>
-                        <div className='flex gap-4 text-white text-sm'>
+            <nav className='p-1 sm:p-2 fixed z-50 w-full bg-indigo-500'>
+                <div className='max-w-sm sm:max-w-7xl mx-auto'>
+                    <div className='flex gap-2 justify-between items-center'>
+                        <div className='flex gap-2 sm:gap-4 text-white text-[8px] sm:text-sm'>
                             <EachUtils
                                 of={languageStorage === "en" ? LIST_NAVBAR_EN : LIST_NAVBAR_ID}
                                 render={(item, index) => (
@@ -30,31 +30,29 @@ const Navbar = () => {
                                 )}
                             />
                         </div>
-                        <div className='flex gap-4 text-white text-sm items-center'>
+                        <div className='flex gap-1.5 sm:gap-4 text-white text-[6px] sm:text-sm items-center'>
                             <OptionLanguage />
                             <UserMenu />
                         </div>
                     </div>
-                    <div className='relative mt-3 flex justify-between items-center max-w-6xl mx-auto'>
+                    <div className='relative mt-3 flex items-center justify-between items-center max-w-xs sm:max-w-6xl mx-auto'>
                         <div className='relative flex items-center gap-1'>
                             <div className='relative'>
                                 <SiShopify
-                                    size={60}
-                                    className='text-white'
+                                    className='text-white w-[35px] h-[35px] sm:w-[60px] sm:h-[60px]'
                                 />
                                 <p
-                                    className='absolute top-4 left-3 font-black text-indigo-500 bg-white rotate-6 text-4xl'
+                                    className='absolute top-2 sm:top-4 left-2 h-6 w-3 sm:h-10 sm:w-6 sm:left-3 font-black text-indigo-500 bg-white rotate-8 sm:rotate-6 text-lg sm:text-4xl'
                                 >E</p>
                             </div>
-                            <h2 className='text-white text-3xl font-semibold font-serif'>EcoMart</h2>
+                            <h2 className='text-white text-xs sm:text-3xl font-semibold font-serif'>EcoMart</h2>
                         </div>
                         <div>
                             <SearchInput />
                         </div>
                         <div>
                             <HiOutlineShoppingCart
-                                size={28}
-                                className='text-white cursor-pointer hover:text-gray-200'
+                                className='text-white text-md sm:text-3xl cursor-pointer hover:text-gray-200'
                                 onClick={() => location.replace('/login')}
                             />
                         </div>

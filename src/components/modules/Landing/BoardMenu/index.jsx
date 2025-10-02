@@ -4,22 +4,22 @@ import { motion } from 'framer-motion'
 const BoardMenu = () => {
 
     return (
-        <div className='relative w-full pt-30 bg-white'>
-            <div className='max-w-7xl mx-auto flex flex-col p-6 gap-6'>
-                <div className='sm:flex items-center gap-2 h-[60vh]'>
+        <div className='relative w-full pt-17 sm:pt-30 bg-white'>
+            <div className='max-w-7xl mx-auto flex flex-col p-2 sm:p-6 gap-6'>
+                <div className='flex items-center gap-2 h-[110px] sm:h-[60vh]'>
                     <motion.img
                         initial={{ x: "-100vw" }}
                         animate={{ x: 0 }}
                         transition={{ duration: 1, type: 'spring', stiffness: 80 }}
                         src='/iklan 2.png'
-                        className='object-cover w-[52em] h-full transition-all'
+                        className='object-cover w-[180px] h-[100px] sm:w-[52em] sm:h-full transition-all'
                     />
                     <motion.img
                         initial={{ x: "100vw" }}
                         animate={{ x: 0 }}
                         transition={{ duration: 1, type: 'spring', stiffness: 80 }}
                         src='/iklan 1.png'
-                        className='object-cover h-full max-w-md transition-all'
+                        className='object-cover w-[180px] h-[100px] sm:h-full sm:w-full sm:max-w-md transition-all'
                     />
                 </div>
             </div>

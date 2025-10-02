@@ -44,20 +44,20 @@ const AccountMenu = () => {
         <div className='dropdown dropdown-hover dropdown-end'>
             {notifMessage && <Notify message={notifMessage} />}
             <div tabIndex={0} className="avatar avatar-online">
-                <div className="w-8 rounded-full">
+                <div className="w-4 sm:w-8 rounded-full">
                     <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
                 </div>
             </div>
             <div
                 tabIndex={0}
-                className='dropdown-content flex flex-col gap-1 justify-center bg-white rounded p-2 text-black shadow-lg'>
-                <p className='text-sm'>{emailStorage}</p>
+                className='dropdown-content flex flex-col gap-1 justify-center bg-white rounded p-1 sm:p-2 text-black shadow-lg'>
+                <p className='text-[8px] sm:text-sm'>{emailStorage}</p>
                 <div
                     onClick={handleSignOut}
-                    className='flex items-center gap-1 justify-center hover:text-red-500 cursor-pointer'
+                    className='flex items-center gap-0.5 sm:gap-1 justify-center hover:text-red-500 cursor-pointer'
                 >
-                    <FaSignOutAlt size={16} />
-                    <div className='hover:underline'>
+                    <FaSignOutAlt className='text-[8px] sm:text-[16px]' />
+                    <div className='hover:underline text-[8px] sm:text-sm'>
                         {languageStorage === 'en' ? 'Sign Out' : 'Keluar'}
                     </div>
                 </div>

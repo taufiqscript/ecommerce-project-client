@@ -84,7 +84,7 @@ const CheckOut = () => {
                 {notifMessage && <Notify
                     message={notifMessage}
                     style={"toast-middle"}
-                    styleMessage={"bg-black/50 flex flex-col text-2xl p-6"}
+                    styleMessage={"bg-black/50 flex flex-col text-[14px] sm:text-2xl p-2 sm:p-6"}
                     onClose={() => mainAddress ?
                         setNotifMessage(null) ||
                         setPrintStrukModal(true)
@@ -95,9 +95,9 @@ const CheckOut = () => {
                 />}
                 <header className='relative fixed w-full'>
                     <nav className='p-2 fixed z-50 w-full bg-indigo-500'>
-                        <div className='max-w-7xl mx-auto'>
+                        <div className='max-w-sm sm:max-w-7xl mx-auto'>
                             <div className='flex justify-between items-center'>
-                                <div className='flex gap-4 text-white text-sm'>
+                                <div className='flex gap-2 sm:gap-4 text-white text-[8px] sm:text-sm'>
                                     <EachUtils
                                         of={languageStorage === "en" ? LIST_NAVBAR_EN : LIST_NAVBAR_ID}
                                         render={(item, index) => (
@@ -109,54 +109,53 @@ const CheckOut = () => {
                                             </div>
                                         )}
                                     />
-                                    <div className='flex gap-2'>
+                                    <div>
                                         <a href={linkedIn}>
-                                            <FaLinkedin size={18} className='cursor-pointer' />
+                                            <FaLinkedin className='cursor-pointer text-[9px] sm:text-[18px] mt-0.5 sm:mt-0' />
                                         </a>
                                     </div>
                                 </div>
-                                <div className='flex gap-3 text-white text-sm items-center'>
+                                <div className='flex gap-1.5 sm:gap-4 text-white text-[6px] sm:text-sm items-center'>
                                     <OptionLanguage />
                                     <AccountMenu />
                                 </div>
                             </div>
                         </div>
                     </nav>
-                    <div className='flex fixed z-10 w-full items-center gap-4 px-6 bg-white shadow-md h-34'>
+                    <div className='flex fixed z-10 w-full items-center gap-2 sm:gap-4 px-3 sm:px-6 pt-2 sm:pt-0 bg-white shadow-md h-20 sm:h-34'>
                         <div
-                            className='flex items-center gap-1 cursor-pointer mt-9'
+                            className='flex items-center gap-1 cursor-pointer mt-4.5 sm:mt-9'
                             onClick={() => navigate('/')}
                         >
                             <div className='relative'>
                                 <SiShopify
-                                    size={60}
-                                    className='text-indigo-500'
+                                    className='text-[32px] sm:text-[60px] text-indigo-500'
                                 />
                                 <p
-                                    className='absolute top-4 left-3 font-black text-white bg-indigo-500 rotate-6 text-4xl'
+                                    className='absolute top-1.5 sm:top-4 left-2 sm:left-3 font-black text-white bg-indigo-500 sm:rotate-6 rotate-8 sm:text-4xl text-[16px] rounded-full'
                                 >E</p>
                             </div>
-                            <div className='flex gap-4 items-center'>
-                                <h2 className='text-indigo-500 text-3xl font-semibold font-serif'>EcoMart</h2>
-                                <span className='text-2xl text-gray-300'>|</span>
+                            <div className='flex gap-2 sm:gap-4 items-center'>
+                                <h2 className='text-indigo-500 text-[18px] sm:text-3xl font-semibold font-serif'>EcoMart</h2>
+                                <span className='text-[16px] sm:text-2xl text-gray-300'>|</span>
                                 <h3
-                                    className='text-2xl text-indigo-600'>
-                                    Checkout
+                                    className='text-[16px] sm:text-2xl text-indigo-600'>
+                                    {languageStorage === "en" ? "Check Out" : "Checkout"}
                                 </h3>
                             </div>
                         </div>
                     </div>
                 </header>
-                <div className='relative h-auto border-b-4 border-b-indigo-600 py-8 pt-42'>
+                <div className='relative h-auto border-b-4 border-b-indigo-600 py-4 sm:py-8 pt-24 sm:pt-42'>
                     <div>
                         <div
-                            className='bg-white max-w-7xl mx-auto mb-4 p-8 rounded rounded-xs'>
+                            className='bg-white max-w-xs sm:max-w-7xl mx-auto mb-2 sm:mb-4 p-2 sm:p-8 rounded rounded-xs'>
                             <div>
-                                <div className='flex flex-col gap-2'>
+                                <div className='flex flex-col gap-1 sm:gap-2'>
 
                                     <div className='flex items-center gap-1'>
-                                        <FaLocationDot size={18} className='text-red-500' />
-                                        <p className='text-xl text-blue-500'>
+                                        <FaLocationDot className='text-[9px] sm:text-[18px] text-red-500' />
+                                        <p className='text-[9px] sm:text-xl text-blue-500'>
                                             {languageStorage === "en" ? "Delivery Address" : "Alamat Pengiriman"}
                                         </p>
                                     </div>
@@ -173,22 +172,22 @@ const CheckOut = () => {
                                             </button>
                                         </div>
                                         : (
-                                            <div className='flex justify-between items-center'>
-                                                <h3 className='font-semibold max-w-xs text-lg'>
+                                            <div className='flex justify-between items-center gap-4'>
+                                                <h3 className='font-semibold max-w-xs text-[8px] sm:text-lg'>
                                                     {mainAddress?.fullName} {mainAddress?.phone}
                                                 </h3>
-                                                <p>
+                                                <p className='text-[8px] sm:text-[16px]'>
                                                     {mainAddress?.street}, {mainAddress?.district} ({mainAddress?.detail}), {mainAddress?.city}, {mainAddress?.province}, {mainAddress?.postalCode}
                                                 </p>
-                                                <div className='flex gap-6 items-center'>
+                                                <div className='flex gap-1 sm:gap-6 items-center'>
                                                     {mainAddress?.isPrimary && (
-                                                        <p className='text-[11px] font-bold border border-blue-500 text-blue-500 py-0.5 px-1'>
+                                                        <p className='text-[5px] sm:text-[11px] font-bold border border-blue-500 text-blue-500 py-0.5 px-0.5 sm:px-1'>
                                                             {languageStorage === "en" ? "Default" : "Utama"}
                                                         </p>
                                                     )}
                                                     <button
                                                         onClick={() => setIsOpenModalAddress(true)}
-                                                        className='text-black cursor-pointer hover:underline'>
+                                                        className='text-[8px] sm:text-sm text-black cursor-pointer hover:underline'>
                                                         {languageStorage === "en" ? "Change" : "Ubah"}
                                                     </button>
                                                 </div>
@@ -198,16 +197,22 @@ const CheckOut = () => {
                             </div>
                         </div>
                         <div
-                            className='flex flex-col gap-6 bg-white max-w-7xl w-full mx-auto p-8 rounded rounded-xs'
+                            className='flex flex-col gap-4 sm:gap-6 bg-white max-w-xs sm:max-w-7xl w-full mx-auto p-2 sm:p-8 rounded rounded-xs'
                         >
-                            <div className='flex justify-between items-center'>
-                                <h3 className='font-semibold text-xl'>
+                            <div className='flex justify-between gap-4 items-center'>
+                                <h3 className='font-semibold text-[8px] sm:text-xl'>
                                     {languageStorage === "en" ? "Products Ordered" : "Produk Dipesan"}
                                 </h3>
-                                <div className='flex max-w-xl w-full justify-between gap-6'>
-                                    <p>{languageStorage === "en" ? "Unit Price" : "Harga Satuan"}</p>
-                                    <p>{languageStorage === "en" ? "Amount" : "Jumlah"}</p>
-                                    <p>{languageStorage === "en" ? "Item Subtotal" : "Subtotal Produk"}</p>
+                                <div className='flex maw-w-[180px] sm:max-w-xl justify-between gap-3 sm:gap-6'>
+                                    <p
+                                        className='text-[8px] sm:text-[16px]'
+                                    >{languageStorage === "en" ? "Unit Price" : "Harga Satuan"}</p>
+                                    <p
+                                        className='text-[8px] sm:text-[16px]'
+                                    >{languageStorage === "en" ? "Amount" : "Jumlah"}</p>
+                                    <p
+                                        className='text-[8px] sm:text-[16px]'
+                                    >{languageStorage === "en" ? "Item Subtotal" : "Subtotal Produk"}</p>
                                 </div>
                             </div>
                             <EachUtils
@@ -217,30 +222,36 @@ const CheckOut = () => {
                                         key={index}
                                     >
                                         <div className='flex justify-between items-center'>
-                                            <div className='flex gap-3 items-center max-w-sm'>
+                                            <div className='flex gap-1.5 sm:gap-3 items-center max-w-sm'>
                                                 <img
                                                     src={item.image}
-                                                    className='w-18'
+                                                    className='w-7 sm:w-18'
                                                 />
-                                                <p className='text-sm'>{item.title}</p>
+                                                <p className='text-[8px] sm:text-sm'>{item.title}</p>
                                             </div>
-                                            <div className='flex justify-between max-w-xl w-full gap-6'>
-                                                <p>{formatCurrency(item.price)}</p>
-                                                <p>{item.quantity}</p>
-                                                <p>{formatCurrency(item.price * item.quantity)}</p>
+                                            <div className='flex justify-between max-w-[150px] sm:max-w-xl w-full gap-2 sm:gap-6'>
+                                                <p
+                                                    className='text-[8px] sm:text-sm'
+                                                >{formatCurrency(item.price)}</p>
+                                                <p
+                                                    className='text-[8px] sm:text-sm'
+                                                >{item.quantity}</p>
+                                                <p
+                                                    className='text-[8px] sm:text-sm'
+                                                >{formatCurrency(item.price * item.quantity)}</p>
                                             </div>
                                         </div>
-                                        <div className='border-b-gray-300 border-b-2 max-w-7xl mx-auto pt-2' />
+                                        <div className='border-b-gray-300 border-b-2 max-w-xs sm:max-w-7xl mx-auto pt-1 sm:pt-2' />
                                     </div>
                                 )}
                             />
                         </div>
                     </div>
                     <div
-                        className='w-full max-w-7xl mx-auto mt-4 bg-white '
+                        className='w-full max-w-xs sm:max-w-7xl mx-auto mt-2 sm:mt-4 bg-white '
                     >
-                        <div className='flex items-center justify-between px-8 py-6'>
-                            <h3 className='text-lg'>
+                        <div className='flex items-center justify-between px-2 sm:px-8 py-3 sm:py-6'>
+                            <h3 className='text-[10px] sm:text-lg'>
                                 {languageStorage === "en" ? "Payment Method" : "Metode Pembayaran"}
                             </h3>
 
@@ -251,27 +262,27 @@ const CheckOut = () => {
                                 style={{ display: isOpenMethodPay == true ? "block" : "none" }}>
                                 <button
                                     onClick={() => setMethodPayment('cod')}
-                                    className={`relative border ${methodPayment === "cod" ? "border-blue-400" : "border-gray-200"} px-6 py-1 cursor-pointer hover:text-blue-400 hover:border-blue-400 mr-4`}
+                                    className={`relative border ${methodPayment === "cod" ? "border-blue-400" : "border-gray-200"} px-3 sm:px-6 py-0.5 sm:py-1 cursor-pointer hover:text-blue-400 hover:border-blue-400 mr-2 sm:mr-4 text-[10px] sm:text-[16px]`}
                                 >COD
                                     <span
                                         style={{ display: methodPayment === "cod" ? "block" : "none" }}
-                                        className='absolute bottom-0 right-0 w-0 h-0 border-l-[18px] border-b-[18px] border-transparent border-b-blue-400' />
+                                        className='absolute bottom-0 right-0 w-0 h-0 border-l-[9px] sm:border-l-[18px] border-b-[9px] sm:border-b-[18px] border-transparent border-b-blue-400' />
                                     <FaCheck
                                         style={{ display: methodPayment === "cod" ? "block" : "none" }}
-                                        className='absolute bottom-[2px] right-[2px] font-bold text-white text-[8.5px]'
+                                        className='absolute bottom-[1px] sm:bottom-[2px] right-[1px] sm:right-[2px] font-bold text-white text-[3.5px] sm:text-[8.5px]'
                                     />
                                 </button>
                                 <button
                                     onClick={() => setMethodPayment('bank')}
-                                    className={`relative border ${methodPayment === "bank" ? "border-blue-400" : "border-gray-200"} px-4 py-1 cursor-pointer hover:text-blue-400 hover:border-blue-400`}
+                                    className={`relative border ${methodPayment === "bank" ? "border-blue-400" : "border-gray-200"} px-3 sm:px-6 py-0.5 sm:py-1 cursor-pointer hover:text-blue-400 hover:border-blue-400 text-[10px] sm:text-[16px]`}
                                 >
                                     Transfer Bank
                                     <span
                                         style={{ display: methodPayment === "bank" ? "block" : "none" }}
-                                        className='absolute bottom-0 right-0 w-0 h-0 border-l-[18px] border-b-[18px] border-transparent border-b-blue-400' />
+                                        className='absolute bottom-0 right-0 w-0 h-0 border-l-[9px] sm:border-l-[18px] border-b-[9px] sm:border-b-[18px] border-transparent border-b-blue-400' />
                                     <FaCheck
                                         style={{ display: methodPayment === "bank" ? "block" : "none" }}
-                                        className='absolute bottom-[2px] right-[2px] font-bold text-white text-[8.5px]'
+                                        className='absolute bottom-[1px] sm:bottom-[2px] right-[1px] sm:right-[2px] font-bold text-white text-[3.5px] sm:text-[8.5px]'
                                     />
                                 </button>
                             </motion.div>
@@ -280,11 +291,13 @@ const CheckOut = () => {
                                 style={{ display: isOpenMethodPay === false ? 'block' : 'none' }}
                             >
                                 {!methodPayment ? (
-                                    <div className='flex items-center gap-6'>
-                                        <p>{languageStorage === 'en' ? 'Select method payment...' : 'Pilih metode pembayaran...'}</p>
+                                    <div className='flex items-center gap-2 sm:gap-6'>
+                                        <p
+                                            className='text-[8px] sm:text-[16px]'
+                                        >{languageStorage === 'en' ? 'Select method payment...' : 'Pilih metode pembayaran...'}</p>
                                         <button
                                             onClick={() => setIsOpenMethodPay(true)}
-                                            className='cursor-pointer hover:text-blue-400'
+                                            className='cursor-pointer hover:text-blue-400 text-[8px] sm:text-[16px]'
                                         >
                                             {languageStorage === "en" ? "Add" : "Tambah"}
                                         </button>
@@ -292,14 +305,17 @@ const CheckOut = () => {
                                 )
                                     :
                                     (
-                                        <div className='flex items-center gap-6'>
-                                            <p>{
+                                        <div className='flex items-center gap-2 sm:gap-6'>
+                                            <p
+                                                className='text-[8px] sm:text-[16px]'
+                                            >{
                                                 methodPayment === "bank" ? bankStorage + " - Transfer Bank" :
                                                     methodPayment === "cod" ? "COD - Cash on Delivery" : null
-                                            }</p>
+                                                }
+                                            </p>
                                             <button
                                                 onClick={() => setIsOpenMethodPay(true)}
-                                                className='cursor-pointer hover:text-blue-400'
+                                                className='cursor-pointer hover:text-blue-400 text-[8px] sm:text-[16px]'
                                             >
                                                 {languageStorage === "en" ? "Change" : "Ubah"}
                                             </button>
@@ -312,35 +328,35 @@ const CheckOut = () => {
                             initial={{ translateY: -10 }}
                             animate={{ translateY: isOpenMethodPay === true ? 0 : -10 }}
                             style={{ display: isOpenMethodPay === true ? 'block' : 'none' }}
-                            className='px-8 py-10 border-t-gray-200 border-t-1'>
-                            <div className='flex gap-20'>
+                            className='px-2 sm:px-8 py-5 sm:py-10 border-t-gray-200 border-t-1'>
+                            <div className='flex gap-6 sm:gap-20'>
                                 {methodPayment === 'bank' ? (
-                                    <div className='flex gap-20'>
-                                        <h3 className='text-lg'>
+                                    <div className='flex gap-10 sm:gap-20'>
+                                        <h3 className='text-[10px] sm:text-lg'>
                                             {languageStorage === 'en' ? 'Choose Bank' : 'Pilih Bank'}
                                         </h3>
-                                        <div className='grid grid-cols-1 gap-14'>
+                                        <div className='grid grid-cols-1 gap-7 sm:gap-14'>
                                             <EachUtils
                                                 of={LIST_BANK}
                                                 render={(item, index) => (
                                                     <div
                                                         key={index}
                                                     >
-                                                        <div className='flex items-center gap-8'>
+                                                        <div className='flex items-center gap-4 sm:gap-8'>
                                                             <input
                                                                 checked={bankStorage === item.title}
                                                                 onChange={() => setBankStorage(item.title)}
                                                                 type='radio'
-                                                                className='radio checked:bg-blue-500 checked:text-white'
+                                                                className='radio checked:bg-blue-500 checked:text-white w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]'
                                                             />
-                                                            <div className='flex gap-4 items-center'>
-                                                                <div className='border border-gray-200 py-1 px-2'>
+                                                            <div className='flex gap-2 sm:gap-4 items-center'>
+                                                                <div className='border border-gray-200 py-0.5 sm:py-1 px-1 sm:px-2'>
                                                                     <img
                                                                         src={item.image}
-                                                                        className='object-cover w-11'
+                                                                        className='object-cover w-5.5 sm:w-11'
                                                                     />
                                                                 </div>
-                                                                <p>{item.title}</p>
+                                                                <p className='text-[10px] sm:text-[16px]'>{item.title}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -351,9 +367,9 @@ const CheckOut = () => {
                                 )
                                     :
                                     (
-                                        <div className='flex gap-20'>
-                                            <p>COD</p>
-                                            <p>
+                                        <div className='flex gap-6 sm:gap-20'>
+                                            <p className='text-[10px] sm:text-[16px]'>COD</p>
+                                            <p className='text-[10px] sm:text-[16px]'>
                                                 {languageStorage === 'en' ? 'Cash on Delivery' : 'Pembayaran Tunai'}
                                             </p>
                                         </div>
@@ -361,27 +377,29 @@ const CheckOut = () => {
                                 }
                             </div>
                         </motion.div>
-                        <div className='w-full max-w-7xl mx-auto pt-4 bg-blue-100/30 p-8 border-t-1 border-t-gray-300'>
+                        <div className='w-full max-w-xs sm:max-w-7xl mx-auto pt-2 sm:pt-4 bg-blue-100/30 p-2 sm:p-8 border-t-1 border-t-gray-300'>
                             <div className='flex justify-between'>
                                 <div />
-                                <div className='flex flex-col gap-4'>
-                                    <div className='flex justify-between gap-4 items-center'>
-                                        <p>
+                                <div className='flex flex-col gap-2 sm:gap-4'>
+                                    <div className='flex justify-between gap-2 sm:gap-4 items-center'>
+                                        <p className='text-[10px] sm:text-[16px]'>
                                             {languageStorage === "en" ? "Order Subtotal" : "Subtotal Pesanan"}
                                         </p>
-                                        <p>{formatCurrency(hitungTotal)}</p>
+                                        <p
+                                            className='text-[10px] sm:text-[16px]'
+                                        >{formatCurrency(hitungTotal)}</p>
                                     </div>
-                                    <div className='flex justify-between gap-4 items-center'>
-                                        <p>
+                                    <div className='flex justify-between gap-2 sm:gap-4 items-center'>
+                                        <p className='text-[10px] sm:text-[16px]'>
                                             {languageStorage === "en" ? "Total Payment" : "Total Pembayaran"}
                                         </p>
 
-                                        <p className='text-2xl text-blue-500 font-semibold'>{formatCurrency(hitungTotal)}</p>
+                                        <p className='text-[14px] sm:text-2xl text-blue-500 font-semibold'>{formatCurrency(hitungTotal)}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className='w-full flex justify-between items-center max-w-7xl mx-auto pt-4 bg-blue-100/30 py-4 px-8 border-t-2 border-t-gray-300 border-dotted'>
+                        <div className='w-full flex justify-between items-center max-w-xs sm:max-w-7xl mx-auto pt-2 sm:pt-4 bg-blue-100/30 py-2 sm:py-4 px-2 sm:px-8 border-t-2 border-t-gray-300 border-dotted'>
                             <div />
                             <button
                                 onClick={() => {
@@ -390,7 +408,7 @@ const CheckOut = () => {
                                         :
                                         setNotifMessage('Tambahkan alamat terlebih dahulu!')
                                 }}
-                                className='w-42 py-2 px-4 rounded text-white text-lg font-semibold bg-indigo-500 cursor-pointer hover:bg-indigo-600'>
+                                className='w-22 sm:w-45 py-1 sm:py-2 px-2 sm:px-4 rounded text-white text-[10px] sm:text-lg font-semibold bg-indigo-500 cursor-pointer hover:bg-indigo-600'>
                                 {languageStorage === "en" ? "Place Order" : "Buat Pesanan"}
                             </button>
                         </div>
