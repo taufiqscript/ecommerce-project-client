@@ -14,7 +14,7 @@ const Navbar = () => {
 
     return (
         <header className='relative w-full'>
-            <nav className='p-1 sm:p-2 fixed z-50 w-full bg-indigo-500'>
+            <nav className='p-1 sm:p-2 fixed z-50 w-full bg-blue-500'>
                 <div className='max-w-sm sm:max-w-7xl mx-auto'>
                     <div className='flex gap-2 justify-between items-center'>
                         <div className='flex gap-2 sm:gap-4 text-white text-[8px] sm:text-sm'>

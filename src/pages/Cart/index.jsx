@@ -122,12 +122,9 @@ const Cart = () => {
 
     return (
         <BrowseLayout>
-            <div className='bg-gray-200'>
-                {notifMessage && <Notify message={notifMessage} style={"toast-middle"} styleMessage={"bg-black/60 flex flex-col text-[14px] sm:text-2xl"} isShowIcon={selectedItem.length === 0 ? false : true} onClose={() => {
-                    setNotifMessage(null)
-                }} />}
+            <div className='bg-gray-100'>
                 <header className='relative fixed w-full'>
-                    <nav className='p-2 fixed z-50 w-full bg-indigo-500'>
+                    <nav className='p-2 fixed z-50 w-full bg-blue-500'>
                         <div className='max-w-sm sm:max-w-7xl mx-auto'>
                             <div className='flex justify-between items-center'>
                                 <div className='flex gap-2 sm:gap-4 text-white text-[8px] sm:text-sm'>
@@ -162,24 +159,27 @@ const Cart = () => {
                         >
                             <div className='relative'>
                                 <SiShopify
-                                    className='text-[32px] sm:text-[60px] text-indigo-500'
+                                    className='text-[32px] sm:text-[60px] text-blue-500'
                                 />
                                 <p
                                     className='absolute top-1.5 sm:top-4 left-2 sm:left-3 font-black text-white bg-indigo-500 sm:rotate-6 rotate-8 sm:text-4xl text-[16px] rounded-full'
                                 >E</p>
                             </div>
                             <div className='flex gap-2 sm:gap-4 items-center'>
-                                <h2 className='text-indigo-500 text-[18px] sm:text-3xl font-semibold font-serif'>EcoMart</h2>
+                                <h2 className='text-blue-500 text-[18px] sm:text-3xl font-semibold font-serif'>EcoMart</h2>
                                 <span className='text-[16px] sm:text-2xl text-gray-300'>|</span>
                                 <h3
-                                    className='text-[16px] sm:text-2xl text-indigo-600'>
+                                    className='text-[16px] sm:text-2xl text-blue-600'>
                                     {languageStorage === "en" ? "Shopping Cart" : "Keranjang Belanja"}
                                 </h3>
                             </div>
                         </div>
                     </div>
                 </header>
-                <div className='relative h-auto border-b-4 border-b-indigo-600 py-4 sm:py-8 pt-24 sm:pt-42'>
+                <div className={`relative ${cartList.length <= 4 ? 'h-[625px]' : 'h-full'} sm:h-auto border-b-4 border-b-blue-600 py-4 sm:py-8 pt-24 sm:pt-42`}>
+                    {notifMessage && <Notify message={notifMessage} style={"toast-middle"} styleMessage={"bg-black/60 flex flex-col text-[14px] sm:text-2xl"} isShowIcon={selectedItem.length === 0 ? false : true} onClose={() => {
+                        setNotifMessage(null)
+                    }} />}
                     {cartList.length === 0 ? (
                         <div className='relative h-[200px] sm:h-[400px]'>
                             <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
@@ -201,17 +201,17 @@ const Cart = () => {
                         (
                             <div>
                                 <div
-                                    className='flex justify-between items-center bg-white max-w-xs sm:max-w-7xl mx-auto mb-2 sm:mb-4 py-2 sm:py-4 px-2 sm:px-8 rounded rounded-xs'>
-                                    <div className='flex items-center text-[10px] sm:text-[16px] gap-2 sm:gap-4'>
+                                    className='flex justify-between items-center bg-white max-w-[355px] sm:max-w-7xl mx-auto mb-2 sm:mb-4 py-4 px-2 sm:px-8 rounded rounded-xs'>
+                                    <div className='flex items-center text-[11px] sm:text-[16px] gap-2 sm:gap-4'>
                                         <input
                                             checked={selectedItem.length === cartList.length && cartList.length > 0}
                                             onChange={() => handleSelectAll()}
                                             type='checkbox'
-                                            className='checkbox checked:bg-indigo-500 checked:text-white w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]'
+                                            className='checkbox checked:bg-indigo-500 checked:text-white w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]'
                                         />
                                         {languageStorage === "en" ? "Product" : "Produk"}
                                     </div>
-                                    <div className='flex justify-between items-center gap-3 max-w-[180px] sm:max-w-[42em] text-[10px] sm:text-[16px] w-full'>
+                                    <div className='flex justify-between items-center gap-2 max-w-[210px] sm:max-w-[42em] text-[11px] sm:text-[16px] w-full'>
                                         <div>{languageStorage === "en" ? "Price" : "Harga"}</div>
                                         <div>{languageStorage === "en" ? "Quantity" : "Kuantitas"}</div>
                                         <div>{languageStorage === "en" ? "Total Price" : "Total Harga"}</div>
@@ -225,30 +225,30 @@ const Cart = () => {
                                             key={index}
                                         >
                                             <div
-                                                className='flex bg-white max-w-xs sm:max-w-7xl w-full mx-auto items-center justify-between py-2 sm:py-4 px-2 sm:px-8 rounded rounded-xs gap-4'
+                                                className='flex bg-white max-w-[355px] sm:max-w-7xl w-full mx-auto items-center justify-between py-4 px-2 sm:px-8 rounded rounded-xs gap-4'
                                             >
-                                                <div className='max-w-xs flex items-center gap-2 sm:gap-6'>
+                                                <div className='max-w-[90px] sm:max-w-xs flex items-center gap-1.5 sm:gap-6'>
                                                     <input
                                                         type="checkbox"
                                                         checked={selectedItem.includes(item?.id)}
                                                         onChange={() => handleSelectItem(item?.id)}
-                                                        className="checkbox checkbox-md checked:bg-indigo-500 checked:text-white w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
+                                                        className="checkbox checkbox-md checked:bg-indigo-500 checked:text-white w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
                                                     <img
                                                         src={item?.image}
-                                                        className='w-7 sm:w-18'
+                                                        className='w-12 sm:w-18 object-cover'
                                                     />
                                                     <p className='text-[8px] sm:text-sm'>
                                                         {
                                                             screenWidth <= 640 ?
-                                                                handleMaxText(item?.description, 3) :
-                                                                handleMaxText(item?.description, 10)
+                                                                handleMaxText(item?.title, 3) :
+                                                                handleMaxText(item?.title, 20)
                                                         }</p>
                                                 </div>
-                                                <div className='flex justify-between items-center gap-1 sm:gap-4 max-w-[190px] sm:max-w-[43em] w-full'>
+                                                <div className='flex justify-between items-center sm:gap-4 max-w-[218px] sm:max-w-[43em] w-full'>
                                                     <div
                                                         className='text-[8px] sm:text-[16px]'
                                                     >{formatCurrency(item?.price)}</div>
-                                                    <div className='border border-1 border-gray-300 w-12 sm:w-24 h-4.5 sm:h-8'>
+                                                    <div className='border border-1 border-gray-300 w-14 sm:w-24 h-4.5 sm:h-8'>
                                                         <div className='flex items-center justify-between h-full'>
                                                             <button
                                                                 onClick={() => handleQuantityChange(index, "dec")}
@@ -277,7 +277,7 @@ const Cart = () => {
                                                         {languageStorage === "en" ? "Remove" : "Hapus"}</div>
                                                 </div>
                                             </div>
-                                            <div className='border-b-gray-300 border-b-2 max-w-xs sm:max-w-7xl mx-auto' />
+                                            <div className='border-b-gray-300 border-b-2 max-w-[355px] sm:max-w-7xl mx-auto' />
                                         </div>
                                     )}
                                 />
@@ -285,33 +285,33 @@ const Cart = () => {
                         )
                     }
                     <div
-                        className='w-full max-w-xs sm:max-w-7xl mx-auto mt-2 sm:mt-4 bg-white py-2 sm:py-4 px-2 sm:px-8'
+                        className='w-full max-w-[355px] sm:max-w-7xl mx-auto mt-2 sm:mt-4 bg-white py-4 px-2 sm:px-8'
                     >
-                        <div className='flex items-center gap-4 justify-between'>
-                            <div className='flex gap-2 sm:gap-6 items-center'>
+                        <div className='flex items-center gap-1 justify-between'>
+                            <div className='flex gap-1.5 sm:gap-6 items-center'>
                                 <input
                                     checked={selectedItem.length === cartList.length && cartList.length > 0}
                                     onChange={handleSelectAll}
                                     type='checkbox'
-                                    className='checkbox checked:bg-indigo-500 checked:text-white w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]'
+                                    className='checkbox checked:bg-indigo-500 checked:text-white w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]'
                                 />
                                 <p
                                     onClick={() => handleSelectAll()}
-                                    className='cursor-pointer hover:underline text-[8px] sm:text-[16px]'>
+                                    className='cursor-pointer hover:underline text-[9px] sm:text-[16px]'>
                                     {languageStorage === "en" ? "Select All " : "Pilih Semua "}
                                     ({cartList.length})
                                 </p>
                                 <p
                                     onClick={handleRemoveItem}
-                                    className='cursor-pointer hover:underline text-[8px] sm:text-[16px]'>
+                                    className='cursor-pointer hover:underline text-[9px] sm:text-[16px]'>
                                     {languageStorage === "en" ? "Remove" : "Hapus"}
                                 </p>
                             </div>
                             <div className='flex items-center gap-2 sm:gap-6'>
-                                <p className='text-[8px] sm:text-[16px]'>
+                                <p className='text-[9px] sm:text-[16px]'>
                                     Total ({selectedItem.length} produk):
                                     <span
-                                        className='text-[8px] sm:text-2xl text-indigo-500 font-semibold'
+                                        className='text-[10px] sm:text-2xl text-indigo-500 font-semibold'
                                     > {formatCurrencyTotal(selectedItem.length === 0 ? "0" : (
                                         cartList.filter(item => selectedItem.includes(item.id)).
                                             reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -331,7 +331,7 @@ const Cart = () => {
                                     }}
                                     className='flex items-center justify-center gap-0.5 w-18 sm:w-45 py-1 sm:py-2 px-2 sm:px-4 bg-indigo-700 text-white font-semibold cursor-pointer hover:bg-indigo-600 text-[10px] sm:text-lg transition-all rounded-sm'
                                 >
-                                    <MdShoppingCartCheckout className='sm:text-[24px] text-[14px]' />
+                                    <MdShoppingCartCheckout className='sm:text-[24px] text-[13px]' />
                                     {languageStorage === "en" ? "Check Out" : "Checkout"}
                                 </button>
                             </div>

@@ -71,10 +71,10 @@ const Modal = () => {
 
     return (
         <dialog className={`modal ${isOpenModal && idProduct ? 'modal-open' : ''}`}>
-            {notifMessage && <Notify message={notifMessage} style={"toast-middle"} styleMessage={"bg-black/60 flex flex-col text-sm sm:text-2xl"} isShowIcon={true} onClose={() => setNotifMessage(null)} />}
             <div
-                className='relative bg-white max-w-xs sm:max-w-2xl w-full rounded-md h-auto sm:h-screen overflow-y-auto scroll-smooth'
+                className='relative bg-white max-w-[340px] sm:max-w-2xl w-full rounded-md h-auto sm:h-screen overflow-y-auto scroll-smooth'
             >
+                {notifMessage && <Notify message={notifMessage} style={"toast-middle"} styleMessage={"bg-black/60 flex flex-col text-sm sm:text-2xl"} isShowIcon={true} onClose={() => setNotifMessage(null)} />}
                 <div
                     className='relative w-full'
                 >
@@ -114,7 +114,7 @@ const Modal = () => {
                             </p>
                         </div>
                         <div className='flex items-start gap-1 sm:gap-6'>
-                            <div className='bg-white text-black font-semibold w-13 sm:w-26 h-5 sm:h-10'>
+                            <div className='bg-white text-black font-semibold w-16 sm:w-26 h-5 sm:h-10'>
                                 <div className='flex items-center justify-between h-full'>
                                     <button
                                         onClick={() => handleQuantity("dec")}

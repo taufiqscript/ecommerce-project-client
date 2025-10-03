@@ -37,7 +37,7 @@ const Register = () => {
             }, 3000)
 
         } catch (error) {
-            console.log(error.response?.data?.message)
+            setNotifMessage(error.response?.data?.message)
         }
     }
 
@@ -66,13 +66,13 @@ const Register = () => {
     return (
         <DefaultLayout>
             <div className='relative'>
-                {notifMessage && <Notify message={notifMessage} style={"toast-top"} styleMessage={'bg-black'} onClose={() => setNotifMessage(null)} />}
                 <header className='relative w-full'>
+                    {notifMessage && <Notify message={notifMessage} style={"toast-top"} styleMessage={'bg-black/60 flex flex-col text-[14px] sm:text-2xl'} onClose={() => setNotifMessage(null)} />}
                     <nav className='flex justify-between items-center max-w-xs sm:max-w-6xl mx-auto py-3 sm:py-6'>
                         <div className='relative flex items-center gap-1'>
                             <div 
                                 onClick={() => navigate('/')}
-                                className='relative flex items-center gap-1'>
+                                className='relative flex items-center gap-1 cursor-pointer'>
                                 <div className='relative'>
                                     <SiShopify
                                         className='text-indigo-500 w-[35px] h-[35px] sm:w-[60px] sm:h-[60px]'
@@ -88,7 +88,7 @@ const Register = () => {
                         <p className='text-blue-500 text-[10px] sm:text-sm cursor-pointer'>Need Help?</p>
                     </nav>
                 </header>
-                <div className='relative bg-indigo-500 h-[325px] sm:h-[650px] shadow-md'>
+                <div className='relative bg-blue-500 h-[550px] sm:h-[650px] shadow-md'>
                     <div className='absolute top-1/2 -translate-1/2 left-1/2 -translate-x-1/2 flex gap-12 sm:gap-32 items-center max-w-sm sm:max-w-7xl w-full justify-center'>
                         <div className='relative flex flex-col items-center gap-1'>
                             <div className='relative'>
@@ -103,10 +103,10 @@ const Register = () => {
                             <p className='text-white text-[8px] sm:text-2xl sm:mt-4 font-semibold'>Lebih Hemat Lebih Cepat</p>
                         </div>
                         <form
-                            className='bg-white p-4 sm:p-8 rounded-md w-[200px] h-[216px] sm:w-[26em] sm:h-[430px]'
+                            className='bg-white p-4 sm:p-8 rounded-md w-[200px] h-[250px] sm:w-[26em] sm:h-[430px]'
                         >
                             <h3 className='font-semibold text-xs sm:text-2xl'>Sign Up</h3>
-                            <div className='flex flex-col gap-2 sm:gap-4 mt-3 sm:mt-6 '>
+                            <div className='flex flex-col gap-3 sm:gap-4 mt-3 sm:mt-6 '>
                                 <input
                                     placeholder='Email'
                                     type='email'
@@ -136,7 +136,7 @@ const Register = () => {
                                         size={screenWidth < 640 ? 'small' : 'large'}
                                     />
                                 </div>
-                                <p className='text-[8px] sm:mt-2 m-auto'>
+                                <p className='text-[8px] sm:text-[14px] mt-2 m-auto'>
                                     Have An Account?
                                     <span
                                         className='ml-1 hover:text-indigo-500 hover:underline cursor-pointer'

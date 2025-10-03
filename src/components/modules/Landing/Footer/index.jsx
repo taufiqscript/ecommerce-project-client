@@ -11,9 +11,9 @@ const Footer = ({ style }) => {
     const [languageStorage] = useAtom(languageStorageAtom)
 
     return (
-        <footer className={`py-5 px-6 sm:py-10 sm:px-12 ${style}`}>
-            <div className='flex items-start gap-2 sm:gap-[11em] text-sm'>
-                <div className='flex flex-col gap-0.5 sm:gap-4'>
+        <footer className={`py-5 px-6 sm:py-10 sm:px-12 sm:h-full h-[220px] ${style}`}>
+            <div className='flex items-start gap-1 sm:gap-[11em] text-sm'>
+                <div className='flex flex-col sm:gap-4'>
                     <EachUtils
                         of={languageStorage === "en" ? LIST_FOOTER_1_EN : LIST_FOOTER_1_ID}
                         render={(item, index) => (
@@ -27,7 +27,7 @@ const Footer = ({ style }) => {
                         )}
                     />
                 </div>
-                <div className='flex flex-col gap-0.5 sm:gap-4'>
+                <div className='flex flex-col sm:gap-4'>
                     <EachUtils
                         of={languageStorage === "en" ? LIST_FOOTER_2_EN : LIST_FOOTER_2_ID}
                         render={(item, index) => (
@@ -41,7 +41,7 @@ const Footer = ({ style }) => {
                         )}
                     />
                 </div>
-                <div className='flex flex-col gap-0.5 sm:gap-4'>
+                <div className='flex flex-col sm:gap-4'>
                     <EachUtils
                         of={languageStorage === "en" ? LIST_FOOTER_3_EN : LIST_FOOTER_3_ID}
                         render={(item, index) => (
@@ -55,12 +55,12 @@ const Footer = ({ style }) => {
                         )}
                     />
                 </div>
-                <div className='flex flex-col gap-0.5 sm:gap-4'>
+                <div className='flex flex-col h-auto gap-0.5 sm:gap-4'>
                     <EachUtils
                         of={languageStorage === "en" ? LIST_FOOTER_4_EN : LIST_FOOTER_4_ID}
                         render={(item, index) => (
                             <div key={index} >
-                                <h3 className='pt-2.5 sm:pt-0 text-[10px] sm:text-[14px] font-bold'>{item.name}</h3>
+                                <h3 className='pt-1 sm:pt-0 text-[10px] sm:text-[14px] font-bold'>{item.name}</h3>
                                 <div>
                                     <a
                                         href={item.url}
@@ -74,7 +74,7 @@ const Footer = ({ style }) => {
                                                 index === 4 && <FaLinkedin />
                                             }
                                         </span>
-                                        <div className='hover:text-indigo-500 hover:underline text-[10px] sm:text-[14px]'>
+                                        <div className='hover:text-indigo-500 hover:underline text-[8px] sm:text-[14px]'>
                                             {item.title}
                                         </div>
                                     </a>
@@ -83,7 +83,7 @@ const Footer = ({ style }) => {
                         )}
                     />
                 </div>
-                <div className='flex flex-col gap-2.5 sm:gap-4'>
+                <div className='flex flex-col gap-2.5 pl-2 sm:pl-0 sm:gap-4'>
                     <h3
                         className='text-[10px] sm:text-[14px] font-bold'
                     >{languageStorage === "en" ? "Download App" : "Download Aplikasi"}</h3>

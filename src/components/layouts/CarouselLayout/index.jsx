@@ -22,7 +22,7 @@ const CarouselLayout = ({ children }) => {
                 onClick={() => handleScroll(-1)}
             >
                 <GoChevronLeft
-                    className={`text-black text-xl sm:text-2xl cursor-pointer border rounded-full bg-white border-none ${isHover ? "scale-150 sm:scale-180" : "scale-100"} shadow-xl transition-all`}
+                    className={`text-black text-xl sm:text-2xl cursor-pointer border rounded-full bg-white border-none ${isHover ? "scale-160 sm:scale-180" : "scale-100"} shadow-xl transition-all`}
                 />
             </button>
             <button
@@ -30,7 +30,7 @@ const CarouselLayout = ({ children }) => {
                 onClick={() => handleScroll(1)}
             >
                 <GoChevronRight
-                    className={`text-black text-xl sm:text-2xl cursor-pointer border rounded-full bg-white border-none ${isHover ? "scale-150 sm:scale-180" : "scale-100"} shadow-xl transition-all`}
+                    className={`text-black text-xl sm:text-2xl cursor-pointer border rounded-full bg-white border-none ${isHover ? "scale-160 sm:scale-180" : "scale-100"} shadow-xl transition-all`}
                 />
             </button>
             <div
