@@ -76,10 +76,10 @@ const Login = () => {
                                 className='relative flex items-center gap-1 cursor-pointer'>
                                 <div className='relative'>
                                     <SiShopify
-                                        className='text-indigo-500 w-[35px] h-[35px] sm:w-[60px] sm:h-[60px]'
+                                        className='text-blue-500 w-[35px] h-[35px] sm:w-[60px] sm:h-[60px]'
                                     />
                                     <p
-                                        className='absolute top-2 sm:top-4 left-2 h-6 w-3 sm:h-10 sm:w-6 sm:left-3 font-black text-white bg-indigo-500 rotate-8 sm:rotate-6 text-lg sm:text-4xl'
+                                        className='absolute top-2 sm:top-4 left-2 h-6 w-3 sm:h-10 sm:w-6 sm:left-3 font-black text-white bg-blue-500 rotate-8 sm:rotate-6 text-lg sm:text-4xl'
                                     >E</p>
                                 </div>
                                 <h2 className='text-blue-500 text-xs sm:text-3xl font-semibold font-serif'>EcoMart</h2>
@@ -97,7 +97,7 @@ const Login = () => {
                                     className='text-white text-[85px] sm:text-[150px]'
                                 />
                                 <p
-                                    className='absolute top-5 sm:top-10 left-4 sm:left-8 font-black text-indigo-500 bg-white rotate-7 sm:rotate-6 text-6xl sm:text-8xl rounded-full'
+                                    className='absolute top-5 sm:top-10 left-4 sm:left-8 font-black text-blue-500 bg-white rotate-7 sm:rotate-6 text-6xl sm:text-8xl rounded-full'
                                 >E</p>
                             </div>
                             <h2 className='text-white text-lg sm:text-5xl font-semibold font-serif'>EcoMart</h2>
@@ -122,7 +122,7 @@ const Login = () => {
                                 />
                                 <button
                                     onClick={handleLogin}
-                                    className='w-full bg-indigo-500 text-white text-xs sm:text-xl font-bold text-center py-1.5 sm:py-3 rounded cursor-pointer hover:bg-indigo-600 transition-all'
+                                    className='w-full bg-blue-500 text-white text-xs sm:text-xl font-bold text-center py-1.5 sm:py-3 rounded cursor-pointer hover:bg-indigo-600 transition-all'
                                 >
                                     Log In
                                 </button>

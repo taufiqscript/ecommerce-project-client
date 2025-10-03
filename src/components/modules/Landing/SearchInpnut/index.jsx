@@ -16,7 +16,7 @@ const SearchInput = () => {
                     className='bg-white text-[8px] sm:text-lg rounded p-1 sm:p-2 w-[180px] sm:w-4xl'
                 />
                 <div
-                    className='absolute top-[15px] sm:top-1/2 -translate-y-1/2 right-1 bg-indigo-500 py-0.5 sm:py-2 px-2 sm:px-5 rounded cursor-pointer'
+                    className='absolute top-[15px] sm:top-1/2 -translate-y-1/2 right-1 bg-blue-500 py-0.5 sm:py-2 px-2 sm:px-5 rounded cursor-pointer'
                 >
                     <HiMagnifyingGlass
                         className='text-white text-[10px] sm:text-xl'

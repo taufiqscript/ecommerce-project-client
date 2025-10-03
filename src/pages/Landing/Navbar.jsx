@@ -42,7 +42,7 @@ const Navbar = () => {
                                     className='text-white w-[35px] h-[35px] sm:w-[60px] sm:h-[60px]'
                                 />
                                 <p
-                                    className='absolute top-2 sm:top-4 left-2 h-6 w-3 sm:h-10 sm:w-6 sm:left-3 font-black text-indigo-500 bg-white rotate-8 sm:rotate-6 text-lg sm:text-4xl'
+                                    className='absolute top-2 sm:top-4 left-2 h-6 w-3 sm:h-10 sm:w-6 sm:left-3 font-black text-blue-500 bg-white rotate-8 sm:rotate-6 text-lg sm:text-4xl'
                                 >E</p>
                             </div>
                             <h2 className='text-white text-xs sm:text-3xl font-semibold font-serif'>EcoMart</h2>

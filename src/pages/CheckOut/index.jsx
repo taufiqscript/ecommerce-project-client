@@ -407,7 +407,7 @@ const CheckOut = () => {
                                         :
                                         setNotifMessage('Tambahkan alamat terlebih dahulu!')
                                 }}
-                                className='w-22 sm:w-45 py-1 sm:py-2 px-2 sm:px-4 rounded text-white text-[10px] sm:text-lg font-semibold bg-indigo-500 cursor-pointer hover:bg-indigo-600'>
+                                className='w-22 sm:w-45 py-1 sm:py-2 px-2 sm:px-4 rounded text-white text-[10px] sm:text-lg font-semibold bg-blue-500 cursor-pointer hover:bg-indigo-600'>
                                 {languageStorage === "en" ? "Place Order" : "Buat Pesanan"}
                             </button>
                         </div>

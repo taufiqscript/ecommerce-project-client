@@ -162,7 +162,7 @@ const Cart = () => {
                                     className='text-[32px] sm:text-[60px] text-blue-500'
                                 />
                                 <p
-                                    className='absolute top-1.5 sm:top-4 left-2 sm:left-3 font-black text-white bg-indigo-500 sm:rotate-6 rotate-8 sm:text-4xl text-[16px] rounded-full'
+                                    className='absolute top-1.5 sm:top-4 left-2 sm:left-3 font-black text-white bg-blue-500 sm:rotate-6 rotate-8 sm:text-4xl text-[16px] rounded-full'
                                 >E</p>
                             </div>
                             <div className='flex gap-2 sm:gap-4 items-center'>
@@ -311,7 +311,7 @@ const Cart = () => {
                                 <p className='text-[9px] sm:text-[16px]'>
                                     Total ({selectedItem.length} produk):
                                     <span
-                                        className='text-[10px] sm:text-2xl text-indigo-500 font-semibold'
+                                        className='text-[10px] sm:text-2xl text-blue-500 font-semibold'
                                     > {formatCurrencyTotal(selectedItem.length === 0 ? "0" : (
                                         cartList.filter(item => selectedItem.includes(item.id)).
                                             reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -329,7 +329,7 @@ const Cart = () => {
                                                 setNotifMessage
                                             })
                                     }}
-                                    className='flex items-center justify-center gap-0.5 w-18 sm:w-45 py-1 sm:py-2 px-2 sm:px-4 bg-indigo-700 text-white font-semibold cursor-pointer hover:bg-indigo-600 text-[10px] sm:text-lg transition-all rounded-sm'
+                                    className='flex items-center justify-center gap-0.5 w-18 sm:w-45 py-1 sm:py-2 px-2 sm:px-4 bg-indigo-700 text-white font-semibold cursor-pointer hover:bg-blue-600 text-[10px] sm:text-lg transition-all rounded-sm'
                                 >
                                     <MdShoppingCartCheckout className='sm:text-[24px] text-[13px]' />
                                     {languageStorage === "en" ? "Check Out" : "Checkout"}
