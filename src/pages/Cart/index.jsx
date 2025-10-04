@@ -321,7 +321,8 @@ const Cart = () => {
                                 <button
                                     onClick={() => {
                                         selectedItem.length === 0 ?
-                                            setNotifMessage('Anda belum memilih produk untuk di checkout!')
+                                            setNotifMessage(languageStorage === 'en' ?
+                                                'You have not selected any products to checkout!' : 'Anda belum memilih produk untuk di checkout!')
                                             :
                                             addToCheckout({
                                                 data: cartList.filter(item => selectedItem.includes(item.id)),
@@ -329,7 +330,7 @@ const Cart = () => {
                                                 setNotifMessage
                                             })
                                     }}
-                                    className='flex items-center justify-center gap-0.5 w-18 sm:w-45 py-1 sm:py-2 px-2 sm:px-4 bg-indigo-700 text-white font-semibold cursor-pointer hover:bg-blue-600 text-[10px] sm:text-lg transition-all rounded-sm'
+                                    className='flex items-center justify-center gap-0.5 w-20 sm:w-45 py-1 sm:py-2 px-2 sm:px-4 bg-blue-700 text-white font-semibold cursor-pointer hover:bg-blue-600 text-[10px] sm:text-lg transition-all rounded-sm'
                                 >
                                     <MdShoppingCartCheckout className='sm:text-[24px] text-[13px]' />
                                     {languageStorage === "en" ? "Check Out" : "Checkout"}

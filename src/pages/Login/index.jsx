@@ -106,7 +106,7 @@ const Login = () => {
                         <form
                             className='bg-white p-4 sm:p-8 rounded-md w-[200px] h-[250px] sm:w-[26em] sm:h-[430px]'
                         >
-                            <h3 className='font-semibold text-xs sm:text-2xl'>Log In</h3>
+                            <h3 className='font-semibold text-xs sm:text-2xl'>Sign In</h3>
                             <div className='flex flex-col gap-3 sm:gap-4 mt-3 sm:mt-6 '>
                                 <input
                                     placeholder='Email'
@@ -122,9 +122,9 @@ const Login = () => {
                                 />
                                 <button
                                     onClick={handleLogin}
-                                    className='w-full bg-blue-500 text-white text-xs sm:text-xl font-bold text-center py-1.5 sm:py-3 rounded cursor-pointer hover:bg-indigo-600 transition-all'
+                                    className='w-full bg-blue-500 text-white text-xs sm:text-xl font-bold text-center py-1.5 sm:py-3 rounded cursor-pointer hover:bg-blue-600 transition-all'
                                 >
-                                    Log In
+                                    Login
                                 </button>
                                 <div className='flex items-center'>
                                     <div className='flex-grow border-t border-gray-300' />

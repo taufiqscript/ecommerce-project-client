@@ -121,7 +121,7 @@ const Register = () => {
                                 />
                                 <button
                                     onClick={handleRegister}
-                                    className='w-full bg-blue-500 text-white text-xs sm:text-xl font-bold text-center py-1.5 sm:py-3 rounded cursor-pointer hover:bg-indigo-600 transition-all'
+                                    className='w-full bg-blue-500 text-white text-xs sm:text-xl font-bold text-center py-1.5 sm:py-3 rounded cursor-pointer hover:bg-blue-600 transition-all'
                                 >
                                     Sign Up
                                 </button>

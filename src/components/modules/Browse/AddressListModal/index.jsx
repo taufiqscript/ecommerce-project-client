@@ -49,15 +49,15 @@ const AddressListModal = () => {
 
     return (
         <dialog className={`modal ${isOpenModalAddress ? "modal-open" : ""}`}>
-            {notifMessage && <Notify
-                message={notifMessage}
-                style={"toast-middle"}
-                styleMessage={"bg-black/50 flex flex-col text-[14px] sm:text-2xl p-2 sm:p-6"}
-                onClose={() =>
-                    setNotifMessage(null)}
-                isShowIcon={chosedAddressStorage === mainAddr?._id || mainAddr ? false : true}
-            />}
-            <div className='bg-white rounded-sm max-w-xs sm:max-w-lg w-full h-auto overflow-y-scroll'>
+            <div className='relative bg-white rounded-sm max-w-xs sm:max-w-lg w-full h-auto overflow-y-scroll'>
+                {notifMessage && <Notify
+                    message={notifMessage}
+                    style={"toast-middle"}
+                    styleMessage={"bg-black/50 flex flex-col text-[14px] sm:text-2xl p-2 sm:p-6"}
+                    onClose={() =>
+                        setNotifMessage(null)}
+                    isShowIcon={chosedAddressStorage === mainAddr?._id || mainAddr ? false : true}
+                />}
                 <h2 className='text-[14px] sm:text-xl p-2 sm:p-4 font-semibold'>
                     {languageStorage === 'en' ? 'My Address' : 'Alamat Saya'}
                 </h2>
@@ -71,7 +71,6 @@ const AddressListModal = () => {
                             >
                                 <div className='flex flex-col pb-1.5 sm:pb-3'>
                                     <div className='flex gap-1 sm:gap-2 items-center'>
-
                                         <input
                                             checked={selectAddress ? selectAddress === item._id
                                                 :
@@ -146,7 +145,7 @@ const AddressListModal = () => {
                                             setNotifMessage
                                         })
                                 }}
-                                className='flex items-center justify-center gap-1 sm:gap-2 border border-gray-300 p-1 sm:p-2 w-24 sm:w-43 hover:bg-red-500 hover:text-white hover:border-none cursor-pointer text-[11px] sm:text-[16px]'
+                                className='flex items-center justify-center gap-1 sm:gap-2 border border-gray-300 p-1 sm:p-2 w-28 sm:w-43 hover:bg-red-500 hover:text-white hover:border-none cursor-pointer text-[11px] sm:text-[16px]'
                             >
                                 <GoTrash className='text-[11px] sm:text-[22px]' />
                                 {languageStorage === 'en' ? 'Remove Address' : 'Hapus Alamat'}

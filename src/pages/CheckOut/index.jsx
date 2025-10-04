@@ -33,12 +33,13 @@ const CheckOut = () => {
     const [, setIsOpenModalAddress] = useAtom(isOpenModalAddressAtom)
     const [, setIsOpenModal] = useAtom(isOpenModalAtom)
     const [, setPrintStrukModal] = useAtom(printStrukModalAtom)
-    const [refresh] = useAtom(refreshAtom)
+    const [refresh, setRefresh] = useAtom(refreshAtom)
 
     const [notifMessage, setNotifMessage] = useState(null)
     const [mainAddress, setMainAddress] = useState(null)
     const [checkOutList, setCheckOutList] = useState([])
     const [isOpenMethodPay, setIsOpenMethodPay] = useState(false)
+    const [isSelectBank, setIsSelectBank] = useState(false)
 
     const linkedIn = "https://www.linkedin.com/in/taufiq-rahman-98a322356"
 
@@ -63,6 +64,15 @@ const CheckOut = () => {
         }
         fetchMyAddress()
     }, [emailStorage, tokenStorage, refresh])
+
+    useEffect(() => {
+        setIsSelectBank(true)
+        if (methodPayment === 'bank' && !bankStorage) {
+            setMethodPayment(null)
+            setIsSelectBank(false)
+        }
+
+    }, [isSelectBank])
 
     const formatCurrency = (num) => {
         if (num) {
@@ -94,7 +104,7 @@ const CheckOut = () => {
                     isShowIcon={mainAddress ? true : false}
                 />}
                 <header className='relative fixed w-full'>
-                    <nav className='p-2 fixed z-50 w-full bg-blue-500'>
+                    <nav className={`p-2 fixed z-50 w-full bg-blue-500`}>
                         <div className='max-w-sm sm:max-w-7xl mx-auto'>
                             <div className='flex justify-between items-center'>
                                 <div className='flex gap-2 sm:gap-4 text-white text-[8px] sm:text-sm'>
@@ -261,7 +271,10 @@ const CheckOut = () => {
                                 transition={{ ease: 'easeIn' }}
                                 style={{ display: isOpenMethodPay == true ? "block" : "none" }}>
                                 <button
-                                    onClick={() => setMethodPayment('cod')}
+                                    onClick={() => {
+                                        setMethodPayment('cod')
+                                        setBankStorage(null)
+                                    }}
                                     className={`relative border ${methodPayment === "cod" ? "border-blue-400" : "border-gray-200"} px-3 sm:px-6 py-0.5 sm:py-1 cursor-pointer hover:text-blue-400 hover:border-blue-400 mr-2 sm:mr-4 text-[10px] sm:text-[16px]`}
                                 >COD
                                     <span
@@ -400,12 +413,15 @@ const CheckOut = () => {
                         </div>
                         <div className='w-full flex justify-between items-center max-w-[355px] sm:max-w-7xl mx-auto pt-2 sm:pt-4 bg-blue-100/30 p-4 sm:py-4 sm:px-8 border-t-2 border-t-gray-300 border-dotted'>
                             <div />
+                            {console.log({ methodPayment })}
+                            {console.log(bankStorage)}
                             <button
                                 onClick={() => {
                                     mainAddress ?
                                         setNotifMessage('Pesanan Anda Berhasil Dibuat')
                                         :
                                         setNotifMessage('Tambahkan alamat terlebih dahulu!')
+                                    setRefresh(!refresh)
                                 }}
                                 className='w-22 sm:w-45 py-1 sm:py-2 px-2 sm:px-4 rounded text-white text-[10px] sm:text-lg font-semibold bg-blue-500 cursor-pointer hover:bg-indigo-600'>
                                 {languageStorage === "en" ? "Place Order" : "Buat Pesanan"}

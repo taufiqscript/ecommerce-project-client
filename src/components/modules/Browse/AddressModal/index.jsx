@@ -23,7 +23,6 @@ const AddressModal = () => {
     const [selectedProvince, setSelectedProvince] = useState(null)
     const [selectedCity, setSelectedCity] = useState(null)
     const [notifMessage, setNotifMessage] = useState(null)
-    const [isOpen, setIsOpen] = useState(false)
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
@@ -48,16 +47,16 @@ const AddressModal = () => {
 
     return (
         <dialog className={`modal ${isOpenModal ? "modal-open" : ""}`}>
-            {notifMessage && <Notify message={notifMessage} style={"toast-middle"}
-                styleMessage={"bg-black/50 flex flex-col text-[14px] sm:text-2xl p-2 sm:p-6"} onClose={() => {
-                    setNotifMessage(null)
-                    location.reload()
-                }} />}
-            <div className='bg-white py-2 sm:py-4 px-3 sm:px-6 rounded-sm'>
+            <div className='relative bg-white max-w-xs sm:max-w-lg w-full h-[380px] sm:h-[582px] py-2 sm:py-4 px-3 sm:px-6 rounded-sm'>
+                {notifMessage && <Notify message={notifMessage} style={"toast-middle"}
+                    styleMessage={"bg-black/50 flex flex-col text-[14px] sm:text-2xl p-2 sm:p-6"} onClose={() => {
+                        setNotifMessage(null)
+                        location.reload()
+                    }} />}
                 <h2 className='text-[14px] sm:text-xl pb-2.5 sm:pb-5 font-semibold'>
                     {languageStorage === 'en' ? 'New Address' : 'Alamat Baru'}
                 </h2>
-                <div className='relative flex flex-col gap-3 sm:gap-6'>
+                <div className='relative flex flex-col gap-4 sm:gap-6'>
                     <div className='flex items-center gap-2 sm:gap-4'>
                         <input
                             name='fullName'
@@ -74,7 +73,7 @@ const AddressModal = () => {
                             className='border border-gray-200 text-[12px] sm:text-[16px] p-1 sm:p-2 shadow-sm w-full'
                         />
                     </div>
-                    <div className='flex flex-col gap-3 sm:gap-6'>
+                    <div className='flex flex-col gap-4 sm:gap-6'>
                         <div className="dropdown">
                             <input
                                 tabIndex={0}
@@ -91,28 +90,28 @@ const AddressModal = () => {
                                         className={`w-auto py-1.5 sm:py-4 ${activeTab === "province" && "border-b-2 sm:border-b-4 border-blue-500"} cursor-pointer transition-all text-[11px] sm:text-[16px]`}
                                         onClick={() => setActiveTab("province")}
                                     >
-                                        Province
+                                        {languageStorage === 'en' ? 'Province' : 'Provinsi'}
                                     </button>
                                     <button
                                         className={`w-auto py-1.5 sm:py-4 ${activeTab === "city" && "border-b-2 sm:border-b-4 border-blue-500"} cursor-pointer transition-all text-[11px] sm:text-[16px]`}
                                         disabled={!selectedProvince}
                                         onClick={() => setActiveTab("city")}
                                     >
-                                        Kota
+                                        {languageStorage === 'en' ? 'City' : 'Kota'}
                                     </button>
                                     <button
                                         className={`w-auto py-1.5 sm:py-4 ${activeTab === "district" && "border-b-2 sm:border-b-4 border-blue-500"} cursor-pointer transition-all text-[11px] sm:text-[16px]`}
                                         disabled={!selectedCity}
                                         onClick={() => setActiveTab("district")}
                                     >
-                                        Kecamatan
+                                        {languageStorage === 'en' ? 'District' : 'Kecamatan'}
                                     </button>
                                     <button
                                         className={`w-auto py-1.5 sm:py-4 ${activeTab === "postalCode" && "border-b-2 sm:border-b-4 border-blue-500"} cursor-pointer transition-all text-[11px] sm:text-[16px]`}
                                         disabled={!form.district}
                                         onClick={() => setActiveTab("postalCode")}
                                     >
-                                        Kode Pos
+                                        {languageStorage === 'en' ? 'Postal Code' : 'Kode Pos'}
                                     </button>
                                 </div>
                                 <div className='flex flex-col h-auto sm:h-[180px] overflow-y-auto'>
@@ -262,7 +261,7 @@ const AddressModal = () => {
                             </p>
                         </div>
                     </div>
-                    <div className='flex items-center justify-between mt-4 sm:mt-0'>
+                    <div className='flex items-center justify-between mt-9 sm:mt-15'>
                         <div />
                         <div className='flex gap-3 sm:gap-6'>
 
