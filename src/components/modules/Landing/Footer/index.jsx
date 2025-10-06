@@ -11,7 +11,7 @@ const Footer = ({ style }) => {
     const [languageStorage] = useAtom(languageStorageAtom)
 
     return (
-        <footer className={`py-5 px-6 sm:py-10 sm:px-12 sm:h-full h-[220px] ${style}`}>
+        <footer className={`py-5 px-6 sm:py-10 sm:px-12 h-full ${style}`}>
             <div className='flex items-start gap-1 sm:gap-[11em] text-sm'>
                 <div className='flex flex-col sm:gap-4'>
                     <EachUtils

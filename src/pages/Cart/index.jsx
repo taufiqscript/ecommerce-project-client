@@ -181,7 +181,7 @@ const Cart = () => {
                         setNotifMessage(null)
                     }} />}
                     {cartList.length === 0 ? (
-                        <div className='relative h-[200px] sm:h-[400px]'>
+                        <div className='relative h-[450px] sm:h-[400px]'>
                             <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                                 <FcShop
                                     className='text-[40px] sm:text-[80px] mx-auto'
@@ -191,7 +191,7 @@ const Cart = () => {
                                 >{languageStorage === "en" ? "Your shopping cart is empty" : "Keranjang belanja Anda kosong"}</p>
                                 <button
                                     onClick={() => navigate('/browse')}
-                                    className='bg-indigo-600 w-full p-1 sm:p-2 rounded text-white text-[12px] sm:text-lg mt-1 sm:mt-2 font-semibold cursor-pointer hover:bg-indigo-700 transition-all'>
+                                    className='bg-blue-600 w-full p-1 sm:p-2 rounded text-white text-[12px] sm:text-lg mt-1 sm:mt-2 font-semibold cursor-pointer hover:bg-blue-700 transition-all'>
                                     {languageStorage === "en" ? "Go Shopping Now" : "Belanja Sekarang"}
                                 </button>
                             </div>
