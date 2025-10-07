@@ -156,7 +156,7 @@ const CheckOut = () => {
                         </div>
                     </div>
                 </header>
-                <div className={`relative ${isOpenMethodPay === true ? 'h-full' : 'h-[625px]'} border-b-4 border-b-blue-600 py-4 sm:py-8 pt-24 sm:pt-42`}>
+                <div className={`relative ${isOpenMethodPay === true ? 'h-full' : 'h-full'} border-b-4 border-b-blue-600 py-4 sm:py-8 pt-24 sm:pt-42`}>
                     <div>
                         <div
                             className='bg-white max-w-[355px] sm:max-w-7xl mx-auto mb-2 sm:mb-4 p-4 sm:p-8 rounded rounded-xs'>
@@ -232,7 +232,7 @@ const CheckOut = () => {
                                         key={index}
                                     >
                                         <div className='flex justify-between items-center'>
-                                            <div className='flex gap-1.5 sm:gap-3 items-center max-w-[100px]'>
+                                            <div className='flex gap-1.5 sm:gap-3 items-center max-w-[100px] sm:max-w-sm'>
                                                 <img
                                                     src={item.image}
                                                     className='w-8 sm:w-18'
