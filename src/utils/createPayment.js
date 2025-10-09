@@ -1,8 +1,8 @@
-import { apiInstancePayment } from "./apiInstance"
+import { apiInstanceExpress } from "./apiInstance"
 
 export const createPayment = async ({ userId, amount, customerName, email, setNotifMessage, token }) => {
     try {
-        const response = await apiInstancePayment.post('/create', {
+        const response = await apiInstanceExpress.post('/payment/create', {
             userId,
             amount,
             customerName,
