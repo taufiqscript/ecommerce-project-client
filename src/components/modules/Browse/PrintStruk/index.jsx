@@ -1,4 +1,4 @@
-import { choosedBankStorageAtom, methodPaymentStorageAtom, printStrukModalAtom } from '@/jotai/atoms'
+import { printStrukModalAtom } from '@/jotai/atoms'
 import EachUtils from '@/utils/EachUtils'
 import { useAtom } from 'jotai'
 import React, { useRef } from 'react'
@@ -8,9 +8,6 @@ import { useReactToPrint } from 'react-to-print'
 
 const PrintStruk = ({ total, address, order }) => {
     const navigate = useNavigate()
-
-    const [methodPayment] = useAtom(methodPaymentStorageAtom)
-    const [bankStorage] = useAtom(choosedBankStorageAtom)
 
     const [printStrukModal, setPrintStrukModal] = useAtom(printStrukModalAtom)
 
@@ -113,10 +110,7 @@ const PrintStruk = ({ total, address, order }) => {
                             <p className='flex flex-col text-[12px] sm:text-[16px]'>
                                 Metode Pembayaran:
                                 <span className='pt-1.5 sm:pt-3 text-[10px] sm:text-sm'>
-                                    {
-                                        methodPayment === "bank" ? bankStorage + " - Transfer Bank" :
-                                            methodPayment === "cod" ? "COD - Cash on Delivery" : null
-                                    }
+
                                 </span>
                             </p>
                         </div>

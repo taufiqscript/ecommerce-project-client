@@ -7,18 +7,16 @@ import Footer from '@/components/modules/Landing/Footer'
 import OptionLanguage from '@/components/modules/Landing/OptionLanguage'
 import Notify from '@/components/modules/Notify'
 import { LIST_NAVBAR_EN, LIST_NAVBAR_ID } from '@/constans/listNavbar'
-import { choosedBankStorageAtom, chosedAddressStorageAtom, emailstorageAtom, isOpenModalAddressAtom, isOpenModalAtom, languageStorageAtom, methodPaymentStorageAtom, printStrukModalAtom, refreshAtom, tokenStorageAtom, userIdStorageAtom } from '@/jotai/atoms'
+import { chosedAddressStorageAtom, emailstorageAtom, isOpenModalAddressAtom, isOpenModalAtom, languageStorageAtom, printStrukModalAtom, refreshAtom, tokenStorageAtom, userIdStorageAtom } from '@/jotai/atoms'
 import EachUtils from '@/utils/EachUtils'
 import { getListCheckOut } from '@/utils/getListCheckout'
 import { getUserAddress } from '@/utils/getUserAddress'
 import { useAtom } from 'jotai'
 import React, { useEffect, useState } from 'react'
-import { FaCheck, FaLinkedin } from 'react-icons/fa'
+import { FaLinkedin } from 'react-icons/fa'
 import { FaLocationDot } from 'react-icons/fa6'
 import { SiShopify } from 'react-icons/si'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { LIST_BANK } from '@/constans/listBank'
 import { createPayment } from '@/utils/createPayment'
 
 const CheckOut = () => {
@@ -29,19 +27,15 @@ const CheckOut = () => {
     const [tokenStorage] = useAtom(tokenStorageAtom)
     const [userIdStorage] = useAtom(userIdStorageAtom)
     const [chosedAddressStorage] = useAtom(chosedAddressStorageAtom)
-    const [methodPayment, setMethodPayment] = useAtom(methodPaymentStorageAtom)
-    const [bankStorage, setBankStorage] = useAtom(choosedBankStorageAtom)
 
     const [, setIsOpenModalAddress] = useAtom(isOpenModalAddressAtom)
     const [, setIsOpenModal] = useAtom(isOpenModalAtom)
     const [, setPrintStrukModal] = useAtom(printStrukModalAtom)
-    const [refresh, setRefresh] = useAtom(refreshAtom)
+    const [refresh] = useAtom(refreshAtom)
 
     const [notifMessage, setNotifMessage] = useState(null)
     const [mainAddress, setMainAddress] = useState(null)
     const [checkOutList, setCheckOutList] = useState([])
-    const [isOpenMethodPay, setIsOpenMethodPay] = useState(false)
-    const [isSelectBank, setIsSelectBank] = useState(false)
 
     const linkedIn = "https://www.linkedin.com/in/taufiq-rahman-98a322356"
 
@@ -83,15 +77,6 @@ const CheckOut = () => {
         fetchMyAddress()
     }, [emailStorage, tokenStorage, refresh])
 
-    useEffect(() => {
-        setIsSelectBank(true)
-        if (methodPayment === 'bank' && !bankStorage) {
-            setMethodPayment(null)
-            setIsSelectBank(false)
-        }
-
-    }, [isSelectBank])
-
     const formatCurrency = (num) => {
         if (num) {
             let formatted = new Intl.NumberFormat("id-ID", {
@@ -113,12 +98,7 @@ const CheckOut = () => {
                     message={notifMessage}
                     style={"toast-middle"}
                     styleMessage={"bg-black/50 flex flex-col text-[14px] sm:text-2xl p-2 sm:p-6"}
-                    onClose={() => mainAddress ?
-                        setNotifMessage(null) ||
-                        setPrintStrukModal(true)
-                        :
-                        setNotifMessage(null)
-                    }
+                    onClose={() => mainAddress && setNotifMessage(null)}
                     isShowIcon={mainAddress ? true : false}
                 />}
                 <header className='relative fixed w-full'>
@@ -174,7 +154,7 @@ const CheckOut = () => {
                         </div>
                     </div>
                 </header>
-                <div className={`relative ${isOpenMethodPay === true ? 'h-full' : 'h-full'} border-b-4 border-b-blue-600 py-4 sm:py-8 pt-24 sm:pt-42`}>
+                <div className={`relative h-full border-b-4 border-b-blue-600 py-4 sm:py-8 pt-24 sm:pt-42`}>
                     <div>
                         <div
                             className='bg-white max-w-[355px] sm:max-w-7xl mx-auto mb-2 sm:mb-4 p-4 sm:p-8 rounded rounded-xs'>
@@ -278,136 +258,7 @@ const CheckOut = () => {
                     <div
                         className='w-full max-w-[355px] sm:max-w-7xl mx-auto mt-2 sm:mt-4 bg-white '
                     >
-                        <div className='flex items-center justify-between p-4 sm:px-8 sm:py-6'>
-                            <h3 className='text-[11px] sm:text-lg'>
-                                {languageStorage === "en" ? "Payment Method" : "Metode Pembayaran"}
-                            </h3>
-
-                            <motion.div
-                                initial={{ translateY: -10 }}
-                                animate={{ translateY: isOpenMethodPay == true ? 0 : -10 }}
-                                transition={{ ease: 'easeIn' }}
-                                style={{ display: isOpenMethodPay == true ? "block" : "none" }}>
-                                <button
-                                    onClick={() => {
-                                        setMethodPayment('cod')
-                                        setBankStorage(null)
-                                    }}
-                                    className={`relative border ${methodPayment === "cod" ? "border-blue-400" : "border-gray-200"} px-3 sm:px-6 py-0.5 sm:py-1 cursor-pointer hover:text-blue-400 hover:border-blue-400 mr-2 sm:mr-4 text-[10px] sm:text-[16px]`}
-                                >COD
-                                    <span
-                                        style={{ display: methodPayment === "cod" ? "block" : "none" }}
-                                        className='absolute bottom-0 right-0 w-0 h-0 border-l-[9px] sm:border-l-[18px] border-b-[9px] sm:border-b-[18px] border-transparent border-b-blue-400' />
-                                    <FaCheck
-                                        style={{ display: methodPayment === "cod" ? "block" : "none" }}
-                                        className='absolute bottom-[1px] sm:bottom-[2px] right-[1px] sm:right-[2px] font-bold text-white text-[3.5px] sm:text-[8.5px]'
-                                    />
-                                </button>
-                                <button
-                                    onClick={() => setMethodPayment('bank')}
-                                    className={`relative border ${methodPayment === "bank" ? "border-blue-400" : "border-gray-200"} px-3 sm:px-6 py-0.5 sm:py-1 cursor-pointer hover:text-blue-400 hover:border-blue-400 text-[10px] sm:text-[16px]`}
-                                >
-                                    Transfer Bank
-                                    <span
-                                        style={{ display: methodPayment === "bank" ? "block" : "none" }}
-                                        className='absolute bottom-0 right-0 w-0 h-0 border-l-[9px] sm:border-l-[18px] border-b-[9px] sm:border-b-[18px] border-transparent border-b-blue-400' />
-                                    <FaCheck
-                                        style={{ display: methodPayment === "bank" ? "block" : "none" }}
-                                        className='absolute bottom-[1px] sm:bottom-[2px] right-[1px] sm:right-[2px] font-bold text-white text-[3.5px] sm:text-[8.5px]'
-                                    />
-                                </button>
-                            </motion.div>
-                            <div
-                                style={{ display: isOpenMethodPay === false ? 'block' : 'none' }}
-                            >
-                                {!methodPayment || methodPayment === 'bank' && !bankStorage ? (
-                                    <div className='flex items-center gap-2 sm:gap-6'>
-                                        <p
-                                            className='text-[9px] sm:text-[16px]'
-                                        >{languageStorage === 'en' ? 'Select method payment...' : 'Pilih metode pembayaran...'}</p>
-                                        <button
-                                            onClick={() => setIsOpenMethodPay(true)}
-                                            className='cursor-pointer hover:text-blue-400 text-[9px] sm:text-[16px]'
-                                        >
-                                            {languageStorage === "en" ? "Add" : "Tambah"}
-                                        </button>
-                                    </div>
-                                )
-                                    :
-                                    (
-                                        <div className='flex items-center gap-2 sm:gap-6'>
-                                            <p
-                                                className='text-[9px] sm:text-[16px]'
-                                            >{
-                                                methodPayment === "bank" ? bankStorage + " - Transfer Bank" :
-                                                    methodPayment === "cod" ? "COD - Cash on Delivery" : null
-                                                }
-                                            </p>
-                                            <button
-                                                onClick={() => setIsOpenMethodPay(true)}
-                                                className='cursor-pointer hover:text-blue-400 text-[9px] sm:text-[16px]'
-                                            >
-                                                {languageStorage === "en" ? "Change" : "Ubah"}
-                                            </button>
-                                        </div>
-                                    )
-                                }
-                            </div>
-                        </div>
-                        <motion.div
-                            initial={{ translateY: -10 }}
-                            animate={{ translateY: isOpenMethodPay === true ? 0 : -10 }}
-                            style={{ display: isOpenMethodPay === true ? 'block' : 'none' }}
-                            className='px-4 sm:px-8 py-5 sm:py-10 border-t-gray-200 border-t-1'>
-                            <div className='flex gap-6 sm:gap-20'>
-                                {methodPayment === 'bank' ? (
-                                    <div className='flex gap-8 sm:gap-20'>
-                                        <h3 className='text-[11px] sm:text-lg'>
-                                            {languageStorage === 'en' ? 'Choose Bank' : 'Pilih Bank'}
-                                        </h3>
-                                        <div className='grid grid-cols-2 items-center sm:grid-cols-1 gap-2 sm:gap-14'>
-                                            <EachUtils
-                                                of={LIST_BANK}
-                                                render={(item, index) => (
-                                                    <div
-                                                        key={index}
-                                                    >
-                                                        <div className='flex items-center gap-3 sm:gap-8'>
-                                                            <input
-                                                                checked={bankStorage === item.title}
-                                                                onChange={() => setBankStorage(item.title)}
-                                                                type='radio'
-                                                                className='radio checked:bg-blue-500 checked:text-white w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]'
-                                                            />
-                                                            <div className='flex gap-2 sm:gap-4 items-center'>
-                                                                <div className='border border-gray-200 py-0.5 sm:py-1 px-1 sm:px-2'>
-                                                                    <img
-                                                                        src={item.image}
-                                                                        className='object-cover w-6 sm:w-11'
-                                                                    />
-                                                                </div>
-                                                                <p className='text-[8.5px] sm:text-[16px]'>{item.title}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            />
-                                        </div>
-                                    </div>
-                                )
-                                    :
-                                    (
-                                        <div className='flex gap-6 sm:gap-20'>
-                                            <p className='text-[10px] sm:text-[16px]'>COD</p>
-                                            <p className='text-[10px] sm:text-[16px]'>
-                                                {languageStorage === 'en' ? 'Cash on Delivery' : 'Pembayaran Tunai'}
-                                            </p>
-                                        </div>
-                                    )
-                                }
-                            </div>
-                        </motion.div>
-                        <div className='w-full max-w-[355px] sm:max-w-7xl mx-auto pt-2 sm:pt-4 bg-blue-100/30 p-2 sm:p-8 border-t-1 border-t-gray-300'>
+                        <div className='w-full max-w-[355px] sm:max-w-7xl mx-auto pt-2 sm:pt-4 bg-blue-100/30 p-2 sm:p-8'>
                             <div className='flex justify-between'>
                                 <div />
                                 <div className='flex flex-col gap-2 sm:gap-4'>
@@ -456,6 +307,7 @@ const CheckOut = () => {
                                                 onSuccess: (result) => {
                                                     console.log('Payment success:', result)
                                                     setNotifMessage('Pembayaran berhasil')
+                                                    setPrintStrukModal(true)
                                                 },
                                                 onPending: (result) => {
                                                     console.log('Payment pending:', result)

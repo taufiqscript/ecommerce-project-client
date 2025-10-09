@@ -1,4 +1,4 @@
-import { choosedBankStorageAtom, emailstorageAtom, languageStorageAtom, methodPaymentStorageAtom, tokenStorageAtom } from '@/jotai/atoms'
+import { emailstorageAtom, languageStorageAtom, tokenStorageAtom } from '@/jotai/atoms'
 import { apiInstanceExpress } from '@/utils/apiInstance'
 import { useAtom } from 'jotai'
 import React, { useState } from 'react'
@@ -12,8 +12,6 @@ const AccountMenu = () => {
     const [languageStorage] = useAtom(languageStorageAtom)
     const [emailStorage, setEmailStorage] = useAtom(emailstorageAtom)
     const [tokenStorage, setTokenStorage] = useAtom(tokenStorageAtom)
-    const [, setMethodPayment] = useAtom(methodPaymentStorageAtom)
-    const [, setBankStorage] = useAtom(choosedBankStorageAtom)
 
     const [notifMessage, setNotifMessage] = useState(null)
 
@@ -29,8 +27,6 @@ const AccountMenu = () => {
 
             setEmailStorage(null)
             setTokenStorage(null)
-            setMethodPayment(null)
-            setBankStorage(null)
 
             setTimeout(() => {
                 navigate('/')

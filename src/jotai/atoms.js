@@ -8,8 +8,6 @@ export const userIdStorageAtom = atomWithStorage('id user', null)
 export const cartListStorageAtom = atomWithStorage('cart', [])
 export const quantitiesStorageAtom = atomWithStorage('qty', null)
 export const chosedAddressStorageAtom = atomWithStorage('address', null)
-export const methodPaymentStorageAtom = atomWithStorage('method payment', null)
-export const choosedBankStorageAtom = atomWithStorage('bank', null)
 
 export const isOpenModalAtom = atom(false)
 export const isOpenModalAddressAtom = atom(false)
