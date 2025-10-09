@@ -47,7 +47,7 @@ const CheckOut = () => {
 
     useEffect(() => {
         const scriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js"
-        const clientKey = import.meta.env.VITE_MIDTRANS_CLIENT_KEY
+        const clientKey = import.meta.env.VITE_MIDTRANS_CLIENT
 
         const script = document.createElement('script')
         script.src = scriptUrl
