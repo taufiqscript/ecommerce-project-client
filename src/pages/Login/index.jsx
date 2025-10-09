@@ -56,6 +56,7 @@ const Login = () => {
             if (login.status === 200) {
                 setEmailStorage(userInfo.email)
                 setTokenStorage(login.data.data.token)
+                setUserIdStorage(login.data.data.userId)
                 navigate('/browse')
             }
 
