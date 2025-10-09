@@ -4,6 +4,7 @@ import { atomWithStorage } from 'jotai/utils'
 export const languageStorageAtom = atomWithStorage("language", "id")
 export const emailstorageAtom = atomWithStorage('email', null)
 export const tokenStorageAtom = atomWithStorage('token', null)
+export const userIdStorageAtom = atomWithStorage('id user', null)
 export const cartListStorageAtom = atomWithStorage('cart', [])
 export const quantitiesStorageAtom = atomWithStorage('qty', null)
 export const chosedAddressStorageAtom = atomWithStorage('address', null)

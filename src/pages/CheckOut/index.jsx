@@ -7,7 +7,7 @@ import Footer from '@/components/modules/Landing/Footer'
 import OptionLanguage from '@/components/modules/Landing/OptionLanguage'
 import Notify from '@/components/modules/Notify'
 import { LIST_NAVBAR_EN, LIST_NAVBAR_ID } from '@/constans/listNavbar'
-import { choosedBankStorageAtom, chosedAddressStorageAtom, emailstorageAtom, isOpenModalAddressAtom, isOpenModalAtom, languageStorageAtom, methodPaymentStorageAtom, printStrukModalAtom, refreshAtom, tokenStorageAtom } from '@/jotai/atoms'
+import { choosedBankStorageAtom, chosedAddressStorageAtom, emailstorageAtom, isOpenModalAddressAtom, isOpenModalAtom, languageStorageAtom, methodPaymentStorageAtom, printStrukModalAtom, refreshAtom, tokenStorageAtom, userIdStorageAtom } from '@/jotai/atoms'
 import EachUtils from '@/utils/EachUtils'
 import { getListCheckOut } from '@/utils/getListCheckout'
 import { getUserAddress } from '@/utils/getUserAddress'
@@ -19,6 +19,7 @@ import { SiShopify } from 'react-icons/si'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { LIST_BANK } from '@/constans/listBank'
+import { createPayment } from '@/utils/createPayment'
 
 const CheckOut = () => {
     const navigate = useNavigate()
@@ -26,6 +27,7 @@ const CheckOut = () => {
     const [languageStorage] = useAtom(languageStorageAtom)
     const [emailStorage] = useAtom(emailstorageAtom)
     const [tokenStorage] = useAtom(tokenStorageAtom)
+    const [userIdStorage] = useAtom(userIdStorageAtom)
     const [chosedAddressStorage] = useAtom(chosedAddressStorageAtom)
     const [methodPayment, setMethodPayment] = useAtom(methodPaymentStorageAtom)
     const [bankStorage, setBankStorage] = useAtom(choosedBankStorageAtom)
@@ -43,6 +45,22 @@ const CheckOut = () => {
 
     const linkedIn = "https://www.linkedin.com/in/taufiq-rahman-98a322356"
 
+    useEffect(() => {
+        const scriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js"
+        const clientKey = import.meta.env.VITE_MIDTRANS_CLIENT_KEY
+
+        const script = document.createElement('script')
+        script.src = scriptUrl
+        script.setAttribute("data-client-key", clientKey)
+        script.async = true
+
+        document.body.appendChild(script)
+
+        return () => {
+            document.body.removeChild(script)
+        }
+
+    }, [])
 
     useEffect(() => {
         const fetchMyAddress = async () => {
@@ -413,15 +431,53 @@ const CheckOut = () => {
                         </div>
                         <div className='w-full flex justify-between items-center max-w-[355px] sm:max-w-7xl mx-auto pt-2 sm:pt-4 bg-blue-100/30 p-4 sm:py-4 sm:px-8 border-t-2 border-t-gray-300 border-dotted'>
                             <div />
-                            {console.log({ methodPayment })}
-                            {console.log(bankStorage)}
+
                             <button
-                                onClick={() => {
-                                    mainAddress ?
-                                        setNotifMessage('Pesanan Anda Berhasil Dibuat')
-                                        :
+                                onClick={async () => {
+                                    if (!mainAddress) {
                                         setNotifMessage('Tambahkan alamat terlebih dahulu!')
-                                    setRefresh(!refresh)
+                                        return
+                                    }
+
+                                    try {
+                                        const total = hitungTotal
+
+                                        const data = await createPayment({
+                                            userId: userIdStorage,
+                                            amount: total,
+                                            customerName: mainAddress?.fullName,
+                                            email: emailStorage,
+                                            token: tokenStorage,
+                                            setNotifMessage
+                                        })
+
+                                        if (data?.token) {
+                                            window.snap.pay(data.token, {
+                                                onSuccess: (result) => {
+                                                    console.log('Payment success:', result)
+                                                    setNotifMessage('Pembayaran berhasil')
+                                                },
+                                                onPending: (result) => {
+                                                    console.log('Payment pending:', result)
+                                                    setNotifMessage('Menunggu pembayaran...')
+                                                },
+                                                onError: (result) => {
+                                                    console.log('Payment error:', result)
+                                                    setNotifMessage('Terjadi kesalahan saat pembayaran!')
+                                                },
+                                                onClose: () => {
+                                                    console.log('Popup closed without finishing payment')
+                                                }
+                                            })
+                                        } else {
+                                            setNotifMessage('Gagal membuat pembayaran')
+                                        }
+
+                                    } catch (error) {
+                                        console.error(error)
+                                        setNotifMessage('Error saat menghubungi server')
+                                    }
+
                                 }}
                                 className='w-22 sm:w-45 py-1 sm:py-2 px-2 sm:px-4 rounded text-white text-[10px] sm:text-lg font-semibold bg-blue-500 cursor-pointer hover:bg-indigo-600'>
                                 {languageStorage === "en" ? "Place Order" : "Buat Pesanan"}

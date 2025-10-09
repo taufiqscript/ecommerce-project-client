@@ -1,7 +1,7 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout'
 import Footer from '@/components/modules/Landing/Footer'
 import Notify from '@/components/modules/Notify'
-import { emailAtom, emailstorageAtom, passwordAtom, tokenStorageAtom } from '@/jotai/atoms'
+import { emailAtom, emailstorageAtom, passwordAtom, tokenStorageAtom, userIdStorageAtom } from '@/jotai/atoms'
 import { apiInstanceExpress } from '@/utils/apiInstance'
 import { useAtom } from 'jotai'
 import React, { useState } from 'react'
@@ -15,6 +15,7 @@ const Login = () => {
 
     const [, setEmailStorage] = useAtom(emailstorageAtom)
     const [, setTokenStorage] = useAtom(tokenStorageAtom)
+    const [, setUserIdStorage] = useAtom(userIdStorageAtom)
 
     const [email, setEmail] = useAtom(emailAtom)
     const [password, setPassword] = useAtom(passwordAtom)
@@ -28,11 +29,12 @@ const Login = () => {
                 email,
                 password
             })
-
+            console.log({ login })
             if (login.status !== 200) return setNotifMessage("Login gagal!")
 
             setEmailStorage(email)
             setTokenStorage(login.data.data.token)
+            setUserIdStorage(login.data.data.userId)
             setTimeout(() => {
                 navigate('/browse')
             }, 2000)
