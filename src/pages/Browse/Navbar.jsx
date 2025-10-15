@@ -2,10 +2,11 @@ import AccountMenu from '@/components/modules/Browse/AccountMenu'
 import OptionLanguage from '@/components/modules/Landing/OptionLanguage'
 import SearchInput from '@/components/modules/Landing/SearchInpnut'
 import { LIST_NAVBAR_EN, LIST_NAVBAR_ID } from '@/constans/listNavbar'
-import { languageStorageAtom } from '@/jotai/atoms'
+import { cartListStorageAtom, emailstorageAtom, languageStorageAtom, refreshAtom, tokenStorageAtom } from '@/jotai/atoms'
 import EachUtils from '@/utils/EachUtils'
+import { getMyShoppingCart } from '@/utils/getMyShoppingCart'
 import { useAtom } from 'jotai'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaLinkedin } from 'react-icons/fa'
 import { HiOutlineShoppingCart } from 'react-icons/hi2'
 import { SiShopify } from 'react-icons/si'
@@ -14,7 +15,21 @@ import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
     const navigate = useNavigate()
 
+    const [emailStorage] = useAtom(emailstorageAtom)
+    const [tokenStorage] = useAtom(tokenStorageAtom)
     const [languageStorage] = useAtom(languageStorageAtom)
+    const [cartlist, setCartList] = useAtom(cartListStorageAtom)
+
+    const [refresh] = useAtom(refreshAtom)
+
+    useEffect(() => {
+        if (emailStorage && tokenStorage && cartlist) {
+            getMyShoppingCart({
+                email: emailStorage,
+                token: tokenStorage
+            }).then(result => setCartList(result))
+        }
+    }, [emailStorage, tokenStorage, cartlist, refresh])
 
     const linkedIn = "https://www.linkedin.com/in/taufiq-rahman-98a322356"
 
@@ -61,11 +76,14 @@ const Navbar = () => {
                         <div>
                             <SearchInput />
                         </div>
-                        <div>
+                        <div className='relative'>
                             <HiOutlineShoppingCart
-                                className='text-white text-md sm:text-3xl cursor-pointer hover:text-gray-200'
+                                className='relative text-white text-md sm:text-3xl cursor-pointer hover:text-gray-200'
                                 onClick={() => navigate('/cart')}
                             />
+                            <div className='absolute bottom-[1px] right-0 p-0.5 bg-red-500 text-white rounded text-center w-4 h-4 font-bold text-[10px]'>
+                                {cartlist?.length}
+                            </div>
                         </div>
                     </div>
                 </div>

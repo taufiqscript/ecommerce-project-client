@@ -7,7 +7,7 @@ import Footer from '@/components/modules/Landing/Footer'
 import OptionLanguage from '@/components/modules/Landing/OptionLanguage'
 import Notify from '@/components/modules/Notify'
 import { LIST_NAVBAR_EN, LIST_NAVBAR_ID } from '@/constans/listNavbar'
-import { chosedAddressStorageAtom, emailstorageAtom, isOpenModalAddressAtom, isOpenModalAtom, languageStorageAtom, printStrukModalAtom, refreshAtom, tokenStorageAtom, userIdStorageAtom } from '@/jotai/atoms'
+import { chosedAddressStorageAtom, emailstorageAtom, isOpenModalAddressAtom, isOpenModalAtom, languageStorageAtom, midtransStorageAtom, printStrukModalAtom, refreshAtom, tokenStorageAtom, userIdStorageAtom } from '@/jotai/atoms'
 import EachUtils from '@/utils/EachUtils'
 import { getListCheckOut } from '@/utils/getListCheckout'
 import { getUserAddress } from '@/utils/getUserAddress'
@@ -18,6 +18,7 @@ import { FaLocationDot } from 'react-icons/fa6'
 import { SiShopify } from 'react-icons/si'
 import { useNavigate } from 'react-router-dom'
 import { createPayment } from '@/utils/createPayment'
+import { notificationPayment } from '@/utils/notificationPayment'
 
 const CheckOut = () => {
     const navigate = useNavigate()
@@ -27,6 +28,7 @@ const CheckOut = () => {
     const [tokenStorage] = useAtom(tokenStorageAtom)
     const [userIdStorage] = useAtom(userIdStorageAtom)
     const [chosedAddressStorage] = useAtom(chosedAddressStorageAtom)
+    const [midtrans, setMidtrans] = useAtom(midtransStorageAtom)
 
     const [, setIsOpenModalAddress] = useAtom(isOpenModalAddressAtom)
     const [, setIsOpenModal] = useAtom(isOpenModalAtom)
@@ -308,6 +310,14 @@ const CheckOut = () => {
                                                     console.log('Payment success:', result)
                                                     setNotifMessage('Pembayaran berhasil')
                                                     setPrintStrukModal(true)
+                                                    setMidtrans(result)
+                                                    notificationPayment({
+                                                        token: tokenStorage,
+                                                        order_id: result.order_id,
+                                                        transaction_status: result.transaction_status,
+                                                        payment_type: result.payment_type,
+                                                        transaction_id: result.transaction_id
+                                                    })
                                                 },
                                                 onPending: (result) => {
                                                     console.log('Payment pending:', result)

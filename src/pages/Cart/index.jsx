@@ -119,7 +119,7 @@ const Cart = () => {
     }
 
     const screenWidth = window.innerWidth
-    console.log(cartList)
+
     return (
         <BrowseLayout>
             <div className='bg-gray-100'>
