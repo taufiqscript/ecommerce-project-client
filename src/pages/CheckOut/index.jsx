@@ -322,6 +322,9 @@ const CheckOut = () => {
                                                         address: mainAddress,
                                                         order: checkOutList
                                                     })
+                                                    setTimeout(() => {
+                                                        navigate('/payment-success')
+                                                    }, 5000)
                                                 },
                                                 onPending: (result) => {
                                                     console.log('Payment pending:', result)
