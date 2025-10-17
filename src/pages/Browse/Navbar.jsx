@@ -76,12 +76,11 @@ const Navbar = () => {
                         <div>
                             <SearchInput />
                         </div>
-                        <div className='relative'>
-                            <HiOutlineShoppingCart
-                                className='relative text-white text-md sm:text-3xl cursor-pointer hover:text-gray-200'
-                                onClick={() => navigate('/cart')}
-                            />
-                            <div className='absolute bottom-[1px] right-0 p-0.5 bg-red-500 text-white rounded text-center w-4 h-4 font-bold text-[10px]'>
+                        <div
+                            className='relative text-white text-md sm:text-3xl cursor-pointer hover:text-gray-200'
+                            onClick={() => navigate('/cart')}>
+                            <HiOutlineShoppingCart />
+                            <div className='absolute bottom-[1px] right-0 py-0.5 bg-red-500 text-white rounded text-center w-4 h-4 font-bold text-[11px]'>
                                 {cartlist?.length}
                             </div>
                         </div>

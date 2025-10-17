@@ -10,6 +10,7 @@ import { HiOutlineShoppingCart } from 'react-icons/hi2'
 import { SiShopify } from 'react-icons/si'
 
 const Navbar = () => {
+
     const [languageStorage] = useAtom(languageStorageAtom)
 
     return (
@@ -51,7 +52,7 @@ const Navbar = () => {
                             <SearchInput />
                         </div>
                         <div>
-                            <HiOutlineShoppingCart
+                            <HiOutlineShoppingCart 
                                 className='text-white text-md sm:text-3xl cursor-pointer hover:text-gray-200'
                                 onClick={() => location.replace('/login')}
                             />

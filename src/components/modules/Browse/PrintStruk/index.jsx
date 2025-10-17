@@ -1,4 +1,4 @@
-import { printStrukModalAtom } from '@/jotai/atoms'
+import { midtransNotificationStorageAtom, printStrukModalAtom } from '@/jotai/atoms'
 import EachUtils from '@/utils/EachUtils'
 import { useAtom } from 'jotai'
 import React, { useRef } from 'react'
@@ -8,6 +8,8 @@ import { useReactToPrint } from 'react-to-print'
 
 const PrintStruk = ({ total, address, order }) => {
     const navigate = useNavigate()
+
+    const [midtransStorage, setMidtransStorage] = useAtom(midtransNotificationStorageAtom)
 
     const [printStrukModal, setPrintStrukModal] = useAtom(printStrukModalAtom)
 
@@ -55,6 +57,9 @@ const PrintStruk = ({ total, address, order }) => {
         documentTitle: `Struk-EcoMart-${Date.now()}`
     })
 
+    const paymentType = midtransStorage?.payment_type
+    const bank = midtransStorage?.va_numbers?.map(item => item.bank).join('')
+    console.log(bank)
     return (
         <dialog className={`modal ${printStrukModal && 'modal-open'}`}>
             <div className='bg-white overflow-y-scroll scroll-smooth w-full max-w-xs sm:max-w-md h-auto sm:h-screen py-4 sm:py-0 rounded'>
@@ -86,7 +91,7 @@ const PrintStruk = ({ total, address, order }) => {
                         </div>
                     </div>
                     <div className='py-2 sm:py-4 border-dashed border-b-2 border-b-gray-400'>
-                        <p className='text-[12px] sm:text-[16px] font-bold'>No. Pesanan: {generateOrderNumber()}</p>
+                        <p className='text-[12px] sm:text-[16px] font-bold'>No. Pesanan:<br /> {midtransStorage?.order_id}</p>
                         <div className='grid grid-cols-2 gap-2 sm:gap-4 items-center pt-2.5 sm:pt-5'>
                             <p className='flex flex-col text-[12px] sm:text-[16px]'>
                                 Total Pembayaran
@@ -110,7 +115,37 @@ const PrintStruk = ({ total, address, order }) => {
                             <p className='flex flex-col text-[12px] sm:text-[16px]'>
                                 Metode Pembayaran:
                                 <span className='pt-1.5 sm:pt-3 text-[10px] sm:text-sm'>
-
+                                    {
+                                        paymentType === 'bank_transfer' ? (
+                                            <>Transfer Bank<br />
+                                                {
+                                                    bank === 'bri' ? 'Bank BRI'
+                                                        :
+                                                        bank === 'bca' ? 'Bank BCA'
+                                                            :
+                                                            bank === 'bni' ? 'Bank BNI'
+                                                                :
+                                                                bank === 'permata' ? 'Bank Permata'
+                                                                    :
+                                                                    bank === 'cimb' ? 'Bank CIMB Niaga'
+                                                                        :
+                                                                        bank === 'danamon' ? 'Bank Danamon'
+                                                                            :
+                                                                            bank === 'bsi' ? 'Bank BSI'
+                                                                                : ''
+                                                }
+                                            </>
+                                        )
+                                            :
+                                            paymentType === 'qris' ? (
+                                                <>QRIS<br />( GoPay / ShopeePay )</>
+                                            )
+                                                :
+                                                paymentType === 'cstore' ? (
+                                                    <>CS Store<br />( Alfamart / Indomart )</>
+                                                )
+                                                    : ''
+                                    }
                                 </span>
                             </p>
                         </div>
@@ -150,7 +185,7 @@ const PrintStruk = ({ total, address, order }) => {
                     </div>
                 </div>
 
-                <div className='flex gap-3 sm:gap-6 justify-end items-center px-4 sm:px-8 pb-1 sm:pb-2'>
+                <div className='flex gap-3 mt-4 sm:gap-6 justify-end items-center px-4 sm:px-8 pb-1 sm:pb-2'>
                     <button
                         onClick={() => setPrintStrukModal(false)}
                         className='btn btn-ghost w-14 sm:w-28 h-7 sm:h-10'>
@@ -158,7 +193,7 @@ const PrintStruk = ({ total, address, order }) => {
                     </button>
                     <button
                         onClick={handlePrintStruk}
-                        className='btn btn-primary text-white w-14 sm:w-28 h-7 sm:h-10'>
+                        className='btn btn-primary bg-blue-500 hover:bg-blue-600 border-none text-white w-14 sm:w-28 h-7 sm:h-10'>
                         Cetak
                     </button>
                 </div>

@@ -2,12 +2,11 @@ import BrowseLayout from '@/components/layouts/BrowseLayout'
 import AccountMenu from '@/components/modules/Browse/AccountMenu'
 import AddressListModal from '@/components/modules/Browse/AddressListModal'
 import AddressModal from '@/components/modules/Browse/AddressModal'
-import PrintStruk from '@/components/modules/Browse/PrintStruk'
 import Footer from '@/components/modules/Landing/Footer'
 import OptionLanguage from '@/components/modules/Landing/OptionLanguage'
 import Notify from '@/components/modules/Notify'
 import { LIST_NAVBAR_EN, LIST_NAVBAR_ID } from '@/constans/listNavbar'
-import { chosedAddressStorageAtom, emailstorageAtom, isOpenModalAddressAtom, isOpenModalAtom, languageStorageAtom, midtransStorageAtom, printStrukModalAtom, refreshAtom, tokenStorageAtom, userIdStorageAtom } from '@/jotai/atoms'
+import { chosedAddressStorageAtom, emailstorageAtom, isOpenModalAddressAtom, isOpenModalAtom, languageStorageAtom, midtransNotificationStorageAtom, orderDataStorageAtom, refreshAtom, tokenStorageAtom, userIdStorageAtom } from '@/jotai/atoms'
 import EachUtils from '@/utils/EachUtils'
 import { getListCheckOut } from '@/utils/getListCheckout'
 import { getUserAddress } from '@/utils/getUserAddress'
@@ -28,11 +27,11 @@ const CheckOut = () => {
     const [tokenStorage] = useAtom(tokenStorageAtom)
     const [userIdStorage] = useAtom(userIdStorageAtom)
     const [chosedAddressStorage] = useAtom(chosedAddressStorageAtom)
-    const [midtrans, setMidtrans] = useAtom(midtransStorageAtom)
+    const [, setOrderDataStorage] = useAtom(orderDataStorageAtom)
+    const [, setMidtransStorage] = useAtom(midtransNotificationStorageAtom)
 
     const [, setIsOpenModalAddress] = useAtom(isOpenModalAddressAtom)
     const [, setIsOpenModal] = useAtom(isOpenModalAtom)
-    const [, setPrintStrukModal] = useAtom(printStrukModalAtom)
     const [refresh] = useAtom(refreshAtom)
 
     const [notifMessage, setNotifMessage] = useState(null)
@@ -210,7 +209,9 @@ const CheckOut = () => {
                             className='flex flex-col gap-4 sm:gap-6 bg-white max-w-[355px] sm:max-w-7xl w-full mx-auto p-4 sm:p-8 rounded rounded-xs'
                         >
                             <div className='flex justify-between gap-4 items-center'>
-                                <h3 className='font-semibold text-[10px] sm:text-xl'>
+                                <h3
+                                    className='font-semibold text-[10px] sm:text-xl'
+                                >
                                     {languageStorage === "en" ? "Products Ordered" : "Produk Dipesan"}
                                 </h3>
                                 <div className='flex max-w-[180px] w-full sm:max-w-xl justify-between gap-3 sm:gap-6'>
@@ -308,15 +309,18 @@ const CheckOut = () => {
                                             window.snap.pay(data.token, {
                                                 onSuccess: (result) => {
                                                     console.log('Payment success:', result)
-                                                    setNotifMessage('Pembayaran berhasil')
-                                                    setPrintStrukModal(true)
-                                                    setMidtrans(result)
+                                                    setMidtransStorage(result)
                                                     notificationPayment({
                                                         token: tokenStorage,
                                                         order_id: result.order_id,
                                                         transaction_status: result.transaction_status,
                                                         payment_type: result.payment_type,
                                                         transaction_id: result.transaction_id
+                                                    })
+                                                    setOrderDataStorage({
+                                                        total: hitungTotal,
+                                                        address: mainAddress,
+                                                        order: checkOutList
                                                     })
                                                 },
                                                 onPending: (result) => {
@@ -357,11 +361,6 @@ const CheckOut = () => {
                     <AddressListModal
                         addressed={mainAddress}
                     />}
-                <PrintStruk
-                    total={hitungTotal}
-                    address={mainAddress}
-                    order={checkOutList}
-                />
             </div>
         </BrowseLayout>
     )

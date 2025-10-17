@@ -9,6 +9,7 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import Cart from './pages/Cart'
 import CheckOut from './pages/CheckOut'
+import PaymentSuccess from './pages/PaymentSuccess'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/checkout",
     element: <CheckOut />
+  },
+  {
+    path: '/payment-success',
+    element: <PaymentSuccess />
   }
 ])
 

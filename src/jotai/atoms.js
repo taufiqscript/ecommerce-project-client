@@ -8,7 +8,14 @@ export const userIdStorageAtom = atomWithStorage('id user', null)
 export const cartListStorageAtom = atomWithStorage('cart', [])
 export const quantitiesStorageAtom = atomWithStorage('qty', null)
 export const chosedAddressStorageAtom = atomWithStorage('address', null)
-export const midtransStorageAtom = atomWithStorage('midtrans', [])
+export const midtransNotificationStorageAtom = atomWithStorage('midtrans', null)
+export const orderDataStorageAtom = atomWithStorage('order data',
+    {
+        total: null,
+        address: null,
+        order: []
+    }
+)
 
 export const isOpenModalAtom = atom(false)
 export const isOpenModalAddressAtom = atom(false)
