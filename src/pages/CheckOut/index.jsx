@@ -353,14 +353,16 @@ const CheckOut = () => {
                 </div>
                 <Footer style={"bg-white"} />
 
-                {!mainAddress ?
+                {
+                    !mainAddress ?
                     <AddressModal
                         address={mainAddress}
                     />
                     :
                     <AddressListModal
                         addressed={mainAddress}
-                    />}
+                        />
+                }
             </div>
         </BrowseLayout>
     )
