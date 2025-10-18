@@ -80,7 +80,7 @@ const Navbar = () => {
                             className='relative text-white text-md sm:text-3xl cursor-pointer hover:text-gray-200'
                             onClick={() => navigate('/cart')}>
                             <HiOutlineShoppingCart />
-                            <div className='absolute bottom-[1px] right-0 py-0.5 bg-red-500 text-white rounded text-center w-4 h-4 font-bold text-[11px]'>
+                            <div className='absolute bottom-[1px] right-0 sm:py-0.5 pb-1 bg-red-500 text-white rounded text-center sm:w-4 sm:h-4 w-2 h-2 font-bold sm:text-[11px] text-[6px]'>
                                 {cartlist?.length}
                             </div>
                         </div>

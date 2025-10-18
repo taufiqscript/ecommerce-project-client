@@ -83,14 +83,14 @@ const CheckOut = () => {
             let formatted = new Intl.NumberFormat("id-ID", {
                 style: 'currency',
                 currency: "IDR",
-                minimumFractionDigits: 3
+                minimumFractionDigits: 0
             }).format(num)
 
             return formatted
         }
     }
 
-    const hitungTotal = checkOutList.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    const hitungTotal = checkOutList.reduce((sum, item) => sum + (item.price * 1000) * item.quantity, 0)
 
     return (
         <BrowseLayout>
@@ -155,7 +155,7 @@ const CheckOut = () => {
                         </div>
                     </div>
                 </header>
-                <div className={`relative h-full border-b-4 border-b-blue-600 py-4 sm:py-8 pt-24 sm:pt-42`}>
+                <div className={`relative ${checkOutList?.length <= 2 ? 'h-[580px]' : 'h-full'} border-b-4 border-b-blue-600 py-4 sm:py-8 pt-24 sm:pt-42`}>
                     <div>
                         <div
                             className='bg-white max-w-[355px] sm:max-w-7xl mx-auto mb-2 sm:mb-4 p-4 sm:p-8 rounded rounded-xs'>
@@ -243,13 +243,13 @@ const CheckOut = () => {
                                             <div className='flex justify-between max-w-[180px] sm:max-w-xl w-full gap-2 sm:gap-6'>
                                                 <p
                                                     className='text-[9px] sm:text-sm'
-                                                >{formatCurrency(item.price)}</p>
+                                                >{formatCurrency(item.price * 1000)}</p>
                                                 <p
                                                     className='text-[9px] sm:text-sm'
                                                 >{item.quantity}</p>
                                                 <p
                                                     className='text-[9px] sm:text-sm'
-                                                >{formatCurrency(item.price * item.quantity)}</p>
+                                                >{formatCurrency((item.price * 1000) * item.quantity)}</p>
                                             </div>
                                         </div>
                                         <div className='border-b-gray-300 border-b-2 max-w-[355px] sm:max-w-7xl mx-auto pt-1 sm:pt-2' />
