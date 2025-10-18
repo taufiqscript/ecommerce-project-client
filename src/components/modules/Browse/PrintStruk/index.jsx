@@ -13,27 +13,12 @@ const PrintStruk = ({ total, address, order }) => {
 
     const [printStrukModal, setPrintStrukModal] = useAtom(printStrukModalAtom)
 
-    const generateOrderNumber = () => {
-        let now = new Date()
-
-        let formattedDate = now.getFullYear().toString() +
-            String(now.getMonth() + 1).padStart(2, '0') +
-            String(now.getDate()).padStart(2, '0') +
-            String(now.getHours()).padStart(2, '0') +
-            String(now.getMinutes()).padStart(2, '0') +
-            String(now.getSeconds()).padStart(2, '0')
-
-        let randomPart = Math.floor(10000 + Math.random() * 90000)
-
-        return formattedDate + randomPart
-    }
-
     const formatCurrency = (num) => {
         if (num) {
             const formatted = new Intl.NumberFormat('id-ID', {
                 style: "currency",
                 currency: "IDR",
-                minimumFractionDigits: 3
+                minimumFractionDigits: 0
             }).format(num)
 
             return formatted
@@ -59,7 +44,7 @@ const PrintStruk = ({ total, address, order }) => {
 
     const paymentType = midtransStorage?.payment_type
     const bank = midtransStorage?.va_numbers?.map(item => item.bank).join('')
-    console.log(bank)
+
     return (
         <dialog className={`modal ${printStrukModal && 'modal-open'}`}>
             <div className='bg-white overflow-y-scroll scroll-smooth w-full max-w-xs sm:max-w-md h-auto sm:h-screen py-4 sm:py-0 rounded'>
@@ -167,7 +152,7 @@ const PrintStruk = ({ total, address, order }) => {
                                                     className='text-[10px] sm:text-[16px]'>x {item?.quantity}</p>
                                                 <p
                                                     className='text-[10px] sm:text-[16px]'
-                                                >{formatCurrency(item?.price * item?.quantity)}</p>
+                                                >{formatCurrency((item?.price * 1000) * item?.quantity)}</p>
                                             </div>
                                         </div>
                                     )}

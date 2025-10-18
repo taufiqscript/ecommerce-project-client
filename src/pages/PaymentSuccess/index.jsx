@@ -20,7 +20,7 @@ const PaymentSuccess = () => {
             let formatted = new Intl.NumberFormat('ID-id', {
                 style: 'currency',
                 currency: 'IDR',
-                minimumFractionDigits: 3
+                minimumFractionDigits: 0
             }).format(num)
             return formatted
         }
@@ -62,7 +62,7 @@ const PaymentSuccess = () => {
                                     <span
                                         className="max-w-[180px] sm:max-w-full text-[14px]"
                                     >{item.title} × {item.quantity}</span>
-                                    <span>{formatCurrency(item.price)}</span>
+                                    <span>{formatCurrency(item.price * 1000)}</span>
                                 </div>
                             )}
                         />
