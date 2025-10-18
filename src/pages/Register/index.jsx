@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { SiShopify } from 'react-icons/si'
-import { FaFacebook } from 'react-icons/fa'
-import { FcGoogle } from 'react-icons/fc'
 import { useNavigate } from 'react-router-dom'
 import Footer from '@/components/modules/Landing/Footer'
 import { apiInstanceExpress } from '@/utils/apiInstance'
@@ -11,6 +9,7 @@ import Notify from '@/components/modules/Notify'
 import DefaultLayout from '@/components/layouts/DefaultLayout'
 import { GoogleLogin } from '@react-oauth/google'
 import { jwtDecode } from 'jwt-decode'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -19,6 +18,7 @@ const Register = () => {
     const [password, setPassword] = useAtom(passwordAtom)
 
     const [notifMessage, setNotifMessage] = useState(null)
+    const [show, setShow] = useState(false)
 
     const handleRegister = async (e) => {
         e.preventDefault()
@@ -113,12 +113,24 @@ const Register = () => {
                                     onChange={(e) => setEmail(e.target.value)}
                                     className='w-full text-[10px] sm:text-lg border border-gray-300 rounded px-1 sm:px-2 py-1.5 sm:py-3 shadow-md'
                                 />
+                                <div className='relative'>
                                 <input
-                                    placeholder='Password'
-                                    type='password'
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className='w-full text-[10px] sm:text-lg border border-gray-300 rounded px-1 sm:px-2 py-1.5 sm:py-3 shadow-md'
+                                        placeholder='Password'
+                                        type={show ? 'text' : 'password'}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className='relative w-full text-[10px] sm:text-lg border border-gray-300 rounded px-1 sm:px-2 py-1.5 sm:py-3 shadow-md'
+                                        aria-label='Password'
                                 />
+                                    <button
+                                        type='button'
+                                        aria-label={show ? 'Sembunyikan password' : 'Tampilkan password'}
+                                        aria-pressed={show}
+                                        onClick={() => setShow(!show)}
+                                        className='absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer text-gray-400'
+                                    >
+                                        {show ? <FaEyeSlash /> : <FaEye />}
+                                    </button>
+                                </div>
                                 <button
                                     onClick={handleRegister}
                                     className='w-full bg-blue-500 text-white text-xs sm:text-xl font-bold text-center py-1.5 sm:py-3 rounded cursor-pointer hover:bg-blue-600 transition-all'

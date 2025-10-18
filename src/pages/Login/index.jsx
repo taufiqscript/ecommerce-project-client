@@ -9,6 +9,7 @@ import { SiShopify } from 'react-icons/si'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import { GoogleLogin } from '@react-oauth/google'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 const Login = () => {
     const navigate = useNavigate()
@@ -21,6 +22,7 @@ const Login = () => {
     const [password, setPassword] = useAtom(passwordAtom)
 
     const [notifMessage, setNotifMessage] = useState(null)
+    const [show, setShow] = useState(false)
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -117,12 +119,25 @@ const Login = () => {
                                     onChange={(e) => setEmail(e.target.value)}
                                     className='w-full text-[10px] sm:text-lg border border-gray-300 rounded px-1 sm:px-2 py-1.5 sm:py-3 shadow-md'
                                 />
+                                <div className='relative'>
                                 <input
-                                    placeholder='Password'
-                                    type='password'
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className='w-full text-[10px] sm:text-lg border border-gray-300 rounded px-1 sm:px-2 py-1.5 sm:py-3 shadow-md'
+                                        placeholder='Password'
+                                        type={show ? 'text' : 'password'}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className='relative w-full text-[10px] sm:text-lg border border-gray-300 rounded px-1 sm:px-2 py-1.5 sm:py-3 shadow-md'
+                                        autoComplete='current-password'
+                                        aria-label='Password'
                                 />
+                                    <button
+                                        type='button'
+                                        onClick={() => setShow(!show)}
+                                        aria-pressed={show}
+                                        aria-label={show ? 'Sembunyikan password' : 'Tampilkan password'}
+                                        className='absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer text-gray-400'
+                                    >
+                                        {show ? <FaEyeSlash /> : <FaEye />}
+                                    </button>
+                                </div>
                                 <button
                                     onClick={handleLogin}
                                     className='w-full bg-blue-500 text-white text-xs sm:text-xl font-bold text-center py-1.5 sm:py-3 rounded cursor-pointer hover:bg-blue-600 transition-all'

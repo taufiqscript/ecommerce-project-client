@@ -92,6 +92,8 @@ const CheckOut = () => {
 
     const hitungTotal = checkOutList.reduce((sum, item) => sum + (item.price * 1000) * item.quantity, 0)
 
+    const screenWidth = window.innerWidth
+
     return (
         <BrowseLayout>
             <div className='relative bg-gray-100'>
@@ -155,7 +157,8 @@ const CheckOut = () => {
                         </div>
                     </div>
                 </header>
-                <div className={`relative ${checkOutList?.length <= 2 ? 'h-[580px]' : 'h-full'} border-b-4 border-b-blue-600 py-4 sm:py-8 pt-24 sm:pt-42`}>
+                {console.log(screenWidth)}
+                <div className={`relative ${checkOutList?.length <= 2 && screenWidth < 640 ? 'h-[580px]' : 'h-full'} border-b-4 border-b-blue-600 py-4 sm:py-8 pt-24 sm:pt-42`}>
                     <div>
                         <div
                             className='bg-white max-w-[355px] sm:max-w-7xl mx-auto mb-2 sm:mb-4 p-4 sm:p-8 rounded rounded-xs'>
