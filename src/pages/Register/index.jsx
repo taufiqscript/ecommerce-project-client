@@ -126,7 +126,7 @@ const Register = () => {
                                         aria-label={show ? 'Sembunyikan password' : 'Tampilkan password'}
                                         aria-pressed={show}
                                         onClick={() => setShow(!show)}
-                                        className='absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer text-gray-400'
+                                        className='absolute top-1/2 -translate-y-1/2 sm:right-4 right-2 sm:text-[18px] text-[10px] cursor-pointer text-gray-400'
                                     >
                                         {show ? <FaEyeSlash /> : <FaEye />}
                                     </button>

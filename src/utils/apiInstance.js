@@ -15,7 +15,7 @@ const store = getDefaultStore()
 
 export const apiInstanceExpress = axios.create(
     {
-        baseURL: import.meta.env.VITE_API_URL,
+        baseURL: import.meta.env.VITE_BASE_URL_EXPRESS,
         headers: {
             "Content-Type": "application/json"
         }

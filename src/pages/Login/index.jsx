@@ -133,7 +133,7 @@ const Login = () => {
                                         onClick={() => setShow(!show)}
                                         aria-pressed={show}
                                         aria-label={show ? 'Sembunyikan password' : 'Tampilkan password'}
-                                        className='absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer text-gray-400'
+                                        className='absolute top-1/2 -translate-y-1/2 sm:right-4 right-2 cursor-pointer text-gray-400 sm:text-[18px] text-[10px]'
                                     >
                                         {show ? <FaEyeSlash /> : <FaEye />}
                                     </button>
